@@ -1,0 +1,53 @@
+@import '../../components/variables.css';
+
+.root {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@font-face{
+  font-family: 'josefin-sans';
+  src: url('/josefin-sans/JosefinSans-SemiBold.ttf') format('truetype');
+}
+
+.heading{
+  font-family: 'josefin-sans';
+  font-size: 50px;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.listContainer{
+  margin-left:auto;
+  margin-right:auto;
+  max-width:800px;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 0 40px;
+  max-width: var(--max-content-width);
+}
+
+.news {
+  padding: 0;
+}
+
+.newsItem {
+  list-style-type: none;
+  padding-bottom: 6px;
+}
+
+.newsTitle {
+  font-size: 1.125em;
+}
+
+.newsTitle,
+.newsDesc {
+  display: block;
+}
+
+.link{
+  color:#333333;
+  font-weight: 400;
+}

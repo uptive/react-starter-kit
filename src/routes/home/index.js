@@ -10,16 +10,15 @@
 import React from 'react';
 import Home from './Home';
 import fetch from '../../core/fetch';
-import Layout from '../../components/Layout';
 
 export default {
 
   path: '/',
 
-  async action() {
+  async action(context) {
     return {
-      title: 'React Starter Kit',
-      component: <Layout><div>test</div></Layout>,
+      title: 'Uptiverse',
+      component: <Home loggedInUser={context.store.getState().user}/>,
     };
   },
 

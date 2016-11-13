@@ -1,45 +1,48 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import Layout from '../../components/Layout';
 import s from './Home.css';
+import { Button } from 'react-bootstrap';
 
-class Home extends React.Component {
-  static propTypes = {
-    news: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      link: PropTypes.string.isRequired,
-      contentSnippet: PropTypes.string,
-    })).isRequired,
-  };
-
-  render() {
-    return (
-      <div className={s.root}>
-        <div className={s.container}>
-          <h1 className={s.title}>React.js News</h1>
-          <ul className={s.news}>
-            {this.props.news.map((item, index) => (
-              <li key={index} className={s.newsItem}>
-                <a href={item.link} className={s.newsTitle}>{item.title}</a>
-                <span
-                  className={s.newsDesc}
-                  dangerouslySetInnerHTML={{ __html: item.contentSnippet }}
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
+function Home({ loggedInUser }) {
+  var content = renderContent(loggedInUser);
+  return (
+    <Layout>
+      <div className={s.container}>
+        <h1 className={s.heading}>Welcome to Uptiverse</h1>
+        { content }
       </div>
-    );
-  }
+    </Layout>
+  );
 }
+
+function renderContent(loggedInUser){
+  if(loggedInUser){ return renderPrivateContent(); }
+  return renderPublicContent();
+}
+
+function renderPrivateContent(){
+  return (
+    <div>
+      <p className={s.description}>This is where the magic happens and you are good to go!</p>
+    </div>
+  );
+}
+
+function renderPublicContent(){
+  return (
+    <div>
+      <p className={s.description}>This is where the magic happens and in order to be a part of the magic you need to login. <br/> Use your Uptive account to sign in.</p>
+      <div className={s.buttonContainer}>
+        <Button className={s.loginButton} href="/login/google">Sign in</Button>
+      </div>
+    </div>
+  );
+}
+
+/*
+<p>- or -</p>
+<a href=""> Sign in with token</a>
+*/
 
 export default withStyles(s)(Home);

@@ -8,10 +8,41 @@
  */
 
 @import '../../components/variables.css';
-
 .root {
   padding-left: 20px;
   padding-right: 20px;
+}
+
+@font-face{
+  font-family: 'josefin-sans';
+  src: url('/josefin-sans/JosefinSans-SemiBold.ttf') format('truetype');
+}
+
+.heading{
+  font-family: 'josefin-sans';
+  font-size: 50px;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.description{
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  text-align: center;
+}
+
+.loginButton{
+  font-family: var(--font-family-base);
+  font-size: 25px !important;
+  text-align: center;
+  padding: 7px 30px 8px 30px !important;
+
+}
+
+.buttonContainer{
+    padding-top:20px;
+    margin: 5px auto;
+    width: 130px;
 }
 
 .container {
