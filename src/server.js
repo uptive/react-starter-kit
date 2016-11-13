@@ -86,7 +86,6 @@ app.get('/login/google/return',
     res.redirect('/news');
   }
 );
-
 app.get('/logout',async (req, res, next) => {
   res.clearCookie('id_token');
   res.redirect('/');
@@ -147,6 +146,12 @@ app.get('*', async (req, res, next) => {
       name: 'initialNow',
       value: Date.now(),
     }));
+
+    store.dispatch(setRuntimeVariable({
+      name: 'jwtToken',
+      value: req.cookies.id_token,
+    }));
+
 
     const css = new Set();
 

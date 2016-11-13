@@ -8,9 +8,10 @@ export default {
 
   async action(context) {
       var data = [];
-    /*  const options = {
-        "headers":{"Authorization":"JWT " + context.oauthToken}
+      const options = {
+        "headers":{"Authorization":"JWT " + context.store.getState().runtime.jwtToken}
       };
+      //
       await fetch('https://uptiverse-employee.herokuapp.com/employees', options)
       .then(function(response){
          return response.json();
@@ -21,9 +22,6 @@ export default {
       });
 
       if (!data) throw new Error('Failed to load the employee list.');
-*/
-
-data = [{_id:"wwerew", firstname:"test", lastname:"twer" }];
       return {
          title: 'Employees',
          component: <Employees employees={ data } />,

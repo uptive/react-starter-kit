@@ -9,7 +9,7 @@ export default {
   async action(context) {
       var employee = null;
       const options = {
-        "headers":{"Authorization":"JWT " + context.oauthToken}
+        "headers":{"Authorization":"JWT " + context.store.getState().runtime.jwtToken}
       };
       await fetch('https://uptiverse-employee.herokuapp.com/employees/' + context.params.id, options)
       .then(function(response){

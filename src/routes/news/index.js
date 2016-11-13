@@ -10,7 +10,7 @@ export default {
   async action(context) {
     var data = [];
     const options = {
-      "headers":{"Authorization":"JWT " + context.oauthToken}
+      "headers":{"Authorization":"JWT " + context.store.getState().runtime.jwtToken}
     };
     await fetch('https://uptiverse-news.herokuapp.com/news', options)
     .then(function(response){

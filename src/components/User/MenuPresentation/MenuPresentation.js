@@ -11,17 +11,17 @@ class MenuPresentation extends Component {
     test: PropTypes.string,
   };
 
-  state =  {
-    employee: ""
-  };
-
   constructor(props, context) {
     super(props, context);
+
+    this.state =  {
+      employee: null,
+      jwtToken: context.store.getState().runtime.jwtToken
+    };
   }
 
   handleClick = (event) => {
-    this.setState({employee: 'my new value'});
-    console.log("HEJ");
+
     event.preventDefault();
   };
 
@@ -29,9 +29,8 @@ class MenuPresentation extends Component {
   }
 
   componentDidMount() {
-    console.log("HEJs");
-  /*  const options = {
-      "headers":{"Authorization":"JWT " + oauthToken}
+    const options = {
+      "headers":{"Authorization":"JWT " + this.state.jwtToken}
     };
 
     fetch('https://uptiverse-employee.herokuapp.com/employees/me', options)
@@ -41,28 +40,28 @@ class MenuPresentation extends Component {
        this.setState({
          employee: employee
        });
-    });*/
+    });
   }
 
   render(){
     const { ...props } = this.props;
-//<Link to="/qwerty">
-//  </Link>
+  //  var img = this.state.employee;
+  //  console.log(img);
     return (
-
         <div className={s.imageContainer} {...props} onClick={this.handleClick}>
-  			    {this.state.employee}
+  			  
         </div>
 
 
 
     );
+
+    //
   }
 }
 
 MenuPresentation.contextTypes = {
-    loggedInUser: React.PropTypes.object,
-    oauthToken: PropTypes.string,
+    store: PropTypes.object,
 };
 
 export default withStyles(s)(MenuPresentation);
