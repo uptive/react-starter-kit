@@ -15,7 +15,7 @@ class MenuPresentation extends Component {
     super(props, context);
 
     this.state =  {
-      employee: null,
+      employee: {},
       jwtToken: context.store.getState().runtime.jwtToken
     };
   }
@@ -29,34 +29,44 @@ class MenuPresentation extends Component {
   }
 
   componentDidMount() {
+
+    this.getCurrentUser();
+
+  }
+
+  async getCurrentUser(){
     const options = {
       "headers":{"Authorization":"JWT " + this.state.jwtToken}
     };
 
-    fetch('https://uptiverse-employee.herokuapp.com/employees/me', options)
+    var employee = null;
+
+    await fetch('https://uptiverse-employee.herokuapp.com/employees/me', options)
     .then(function(response){
-       var employee = response.json();
-       console.log(employee);
-       this.setState({
-         employee: employee
-       });
+       return response.json();
+    })
+    .then(function(parsedData) {
+      employee = parsedData;
+      return;
+    });
+
+    this.setState({
+      employee: employee
     });
   }
 
   render(){
     const { ...props } = this.props;
-  //  var img = this.state.employee;
-  //  console.log(img);
+    var img = <div></div>
+    if(this.state.employee.picture){
+      img = <img src={ this.state.employee.picture } />
+    }
+
     return (
         <div className={s.imageContainer} {...props} onClick={this.handleClick}>
-  			  
+  			  { img }
         </div>
-
-
-
     );
-
-    //
   }
 }
 

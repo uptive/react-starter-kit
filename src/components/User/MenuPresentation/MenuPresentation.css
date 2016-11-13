@@ -23,6 +23,10 @@
 }
 
 .imageContainer {
+  display: inline-block;
+}
+
+.imageContainer div{
   margin-left:auto;
   margin-right:auto;
   width:40px;
@@ -30,23 +34,19 @@
   border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
+  padding-top: 3px;
+  text-align: center;
+  color: #333333;
   background: #EEEEEE;
   font-family: Simple-Line-Icons;
   font-size: 21px;
-  color: #333333;
-  padding-top: 3px;
-  text-align: center;
-  display: inline-block;
 }
 
-.profileSection{
-  margin-left:auto;
-  margin-right:auto;
-  padding-left:20px;
-  padding-right:20px;
-  max-width:800px;
-}
-
-.profilePresentation img{
-  margin-top:-100px !important;
+.imageContainer img{
+  width:40px;
+  height:40px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  padding-top: -3px;
 }
