@@ -1,0 +1,47 @@
+@font-face{
+  font-family: 'josefin-sans';
+  src: url('/josefin-sans/JosefinSans-SemiBold.ttf') format('truetype');
+}
+
+.profileHeader {
+  background: #555555;
+  height:150px;
+}
+.profileContainer {
+  background: #FFFFFF;
+}
+
+.picture {
+  margin-left:auto;
+  margin-right:auto;
+  width:200px;
+}
+
+.userName {
+  font-family: 'josefin-sans';
+  font-size: 30px;
+  text-align: center;
+  margin: 0px;
+  padding-top:20px;
+}
+
+.pictureContainer {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.profileSection{
+  margin-left:auto;
+  margin-right:auto;
+  width:800px;
+}
+
+.picture img {
+  margin-left:auto;
+  margin-right:auto;
+  width:200px;
+  height:200px;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+}
