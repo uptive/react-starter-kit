@@ -12,6 +12,7 @@ import cx from 'classnames';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Navigation.css';
 import Link from '../Link';
+import configureStore from './../../store/configureStore';
 
 class Navigation extends React.Component {
   static propTypes = {
@@ -26,7 +27,6 @@ class Navigation extends React.Component {
         <span className={s.spacer}> | </span>
         <Link className={s.link} to="/login">Log in</Link>
         <span className={s.spacer}>or</span>
-        <Link className={cx(s.link, s.highlight)} to="/register">Sign up</Link>
       </div>
     );
   }

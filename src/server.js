@@ -52,26 +52,76 @@ app.use(bodyParser.json());
 //
 // Authentication
 // -----------------------------------------------------------------------------
-app.use(expressJwt({
+app.use("/",expressJwt({
   secret: auth.jwt.secret,
   credentialsRequired: false,
   getToken: req => req.cookies.id_token,
 }));
+
+app.use(expressJwt({
+  secret: auth.jwt.secret,
+  credentialsRequired: true,
+  getToken: req => req.cookies.id_token,
+})
+.unless({
+  path: [
+    '/',
+    '/login/google',
+    '/login/google/return',
+    '/login/jwt',
+  ]
+}));
+
 app.use(passport.initialize());
 
-app.get('/login/facebook',
-  passport.authenticate('facebook', { scope: ['email', 'user_location'], session: false }),
+app.get('/login/google',
+  passport.authenticate('google', { scope: ['email profile'], session: false })
 );
-app.get('/login/facebook/return',
-  passport.authenticate('facebook', { failureRedirect: '/login', session: false }),
+app.get('/login/google/return',
+  passport.authenticate('google', { failureRedirect: '/', session: false }),
   (req, res) => {
     const expiresIn = 60 * 60 * 24 * 180; // 180 days
     const token = jwt.sign(req.user, auth.jwt.secret, { expiresIn });
     res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
-    res.redirect('/');
-  },
+    res.redirect('/news');
+  }
 );
 
+app.get('/logout',async (req, res, next) => {
+  res.clearCookie('id_token');
+  res.redirect('/');
+});
+/*
+
+app.use(expressJwt({
+  secret: auth.jwt.secret,
+  credentialsRequired: true,
+  getToken: req => req.cookies.id_token,
+})
+.unless({
+  path: [
+    '/',
+    '/login/google',
+    '/login/google/return',
+    '/login/jwt',
+  ]
+}));
+
+app.use(passport.initialize());
+
+
+
+app.get('/login/jwt',(req, res, next) => {
+  if(req.query && req.query.id_token){
+    var id_token = req.query.id_token;
+    const expiresIn = 60 * 60 * 24 * 180; // 180 days
+    res.cookie('id_token',id_token, { maxAge: 1000 * expiresIn, httpOnly: true });
+    res.redirect('/');
+  }
+});
+
+
+*/
 //
 // Register API middleware
 // -----------------------------------------------------------------------------
