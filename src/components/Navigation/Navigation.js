@@ -27,6 +27,7 @@ function getContentBasedOnLoggedInUser(user){
   );
 
   if(isLoggedIn(user)){
+//<MenuPresentation />
     content=(
       <div>
         <Link className={s.link} to="/news">News</Link>
@@ -34,7 +35,7 @@ function getContentBasedOnLoggedInUser(user){
         <Link className={s.link} to="/employees">Employees</Link>
         <span className={s.spacer}> | </span>
         <Link className={s.link} to="/logout">Logout</Link>
-        <MenuPresentation />
+
 
       </div> );
   }
