@@ -10,17 +10,23 @@ function News({ news }) {
       <div className={s.news}>
         <h1 className={s.heading}>The daily news </h1>
         <div className={s.listContainer}>
-          {news.map((item, index) => (
-              <div className={s.newsItem} key={index}>
-                <h2 className={s.newsItemHeading}>{item.heading}</h2>
-                <p className={s.newsItemText}>{item.text}</p>
-                <p className={s.newsItemPublished}>{formatDate(item.published)} - <Link to={formatRoute(item.publisherId)} className={s.link}>{item.publisher}</Link></p>
-              </div>
-          ))}
+          { renderNewsItems(news) }
         </div>
       </div>
     </Layout>
   );
+}
+
+function renderNewsItems(news){
+  if(!news){ return; }
+
+  return news.map((item, index) => (
+      <div className={s.newsItem} key={index}>
+        <h2 className={s.newsItemHeading}>{item.heading}</h2>
+        <p className={s.newsItemText}>{item.text}</p>
+        <p className={s.newsItemPublished}>{formatDate(item.published)} - <Link to={formatRoute(item.publisherId)} className={s.link}>{item.publisher}</Link></p>
+      </div>
+  ));
 }
 
 function formatRoute(id){
@@ -30,6 +36,5 @@ function formatRoute(id){
 function formatDate(unformatted){
   return unformatted.substring(0, 10);
 }
-
 
 export default withStyles(s)(News);

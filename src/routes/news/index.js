@@ -1,6 +1,7 @@
 import React from 'react';
 import News from './News';
 import fetch from '../../core/fetch';
+import { getNews } from '../../actions/news';
 
 
 export default {
@@ -9,6 +10,17 @@ export default {
 
   async action(context) {
     var data = [];
+    context.store.dispatch(getNews({token: context.store.getState().runtime.jwtToken}));
+    data = context.store.getState().news.data;
+
+    let unsubscribe = context.store.subscribe(handleChange)
+//    unsubscribe()
+
+    function handleChange(e){
+      console.log(e);
+    }
+/*
+
     const options = {
       "headers":{"Authorization":"JWT " + context.store.getState().runtime.jwtToken}
     };
@@ -22,11 +34,11 @@ export default {
     });
 
     if (!data) throw new Error('Failed to load the news list.');
-
+*/
 
     return {
       title: 'News',
-      component: <News news ={data}/>,
+      component: <News news ={ data }/>,
     };
   },
 
