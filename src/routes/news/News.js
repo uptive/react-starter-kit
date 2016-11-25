@@ -1,20 +1,49 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
 import Link from '../../components/Link';
 import s from './News.css';
+import { getNews } from '../../actions/news';
 
-function News({ news }) {
-  return (
-    <Layout>
-      <div className={s.news}>
-        <h1 className={s.heading}>The daily news </h1>
-        <div className={s.listContainer}>
-          { renderNewsItems(news) }
+class News extends Component {
+
+  static contextTypes = {
+      store: React.PropTypes.object
+  };
+
+  constructor(props, context) {
+    super(props, context);
+
+    this.state =  {
+      news: this.context.store.getState().news.data || [],
+    };
+
+  }
+
+  componentWillMount(){
+    this.context.store.dispatch(getNews({token: this.context.store.getState().runtime.jwtToken}));
+    let unsubscribe = this.context.store.subscribe(() => this.handleChange(this))
+    //    unsubscribe()
+  }
+
+  handleChange(){
+    this.setState({
+      news: this.context.store.getState().news.data
+    });
+  }
+
+  render(){
+    return (
+      <Layout>
+        <div className={s.news}>
+          <h1 className={s.heading}>The daily news </h1>
+          <div className={s.listContainer}>
+            { renderNewsItems(this.state.news) }
+          </div>
         </div>
-      </div>
-    </Layout>
-  );
+      </Layout>
+    );
+  }
 }
 
 function renderNewsItems(news){
@@ -36,5 +65,6 @@ function formatRoute(id){
 function formatDate(unformatted){
   return unformatted.substring(0, 10);
 }
+
 
 export default withStyles(s)(News);
