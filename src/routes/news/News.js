@@ -18,12 +18,17 @@ class News extends Component {
       news: this.context.store.getState().news.data || [],
     };
 
+    this.changeHandler = this.context.store.subscribe(() => this.handleChange(this))
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.context.store.dispatch(getNews({token: this.context.store.getState().runtime.jwtToken}));
-    let unsubscribe = this.context.store.subscribe(() => this.handleChange(this))
-    //    unsubscribe()
+  }
+
+  componentWillUnmount(){
+    if(this.changeHandler){
+      this.changeHandler();
+    }
   }
 
   handleChange(){
