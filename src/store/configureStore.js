@@ -6,7 +6,7 @@ import createLogger from './logger';
 
 export default function configureStore(initialState, helpersConfig) {
   const helpers = createHelpers(helpersConfig);
-  const middleware = [thunk.withExtraArgument(helpers)];
+  const middleware = [thunk.withExtraArgument({helpers})];
 
   let enhancer;
 
