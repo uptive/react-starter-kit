@@ -3,6 +3,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './UserDetails.css';
 import UserPresentation from '../UserPresentation';
 import { Button, ButtonGroup, Glyphicon, FormGroup, FormControl, ControlLabel, Collapse, InputGroup } from 'react-bootstrap';
+import { saveEmployee } from '../../../actions/employee';
 
 
 class UserDetails extends React.Component {
@@ -77,11 +78,7 @@ class UserDetails extends React.Component {
   }
 
   save(event){
-    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-    xmlhttp.open("POST", "https://uptiverse-employee.herokuapp.com/employees/save");
-    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xmlhttp.setRequestHeader("Authorization", "JWT " + this.context.store.getState().runtime.jwtToken);
-    xmlhttp.send(JSON.stringify(this.state.user));
+    this.context.store.dispatch(saveEmployee({employee:this.state.user, token:this.context.store.getState().runtime.jwtToken}));
     this.setState({ edit: !this.state.edit });
   }
 
