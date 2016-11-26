@@ -18,12 +18,18 @@ class UserDetails extends React.Component {
     super(props, context);
     this.state = {
       edit: false,
-      user: props.user,
+      user: null,
       requiredProperties: ["firstname", "lastname", "birthday", "picture", "email", "developmentGoals", "description"],
     };
   }
 
+  componentWillReceiveProps(nextProps){
+   this.setState({user: nextProps.user});
+  }
+
   render() {
+    if(!this.state.user){ return null; }
+
     var properties = addProperties(this.state.user, this.state.requiredProperties);
     properties = showAllProperties(this.state.user);
 
