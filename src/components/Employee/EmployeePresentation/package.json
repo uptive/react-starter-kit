@@ -1,0 +1,6 @@
+{
+  "name": "EmployeePresentation",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./EmployeePresentation.js"
+}

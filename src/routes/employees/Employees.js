@@ -3,7 +3,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
 import s from './Employees.css';
 import Link from '../../components/Link';
-import UserPresentation from '../../components/User/UserPresentation';
+import EmployeePresentation from '../../components/Employee/EmployeePresentation';
 
 function Employees({ employees }) {
   return (
@@ -13,7 +13,7 @@ function Employees({ employees }) {
           {employees.map((item, index) => (
             <Link className={s.link} to={formatRoute(item._id)} key={index}>
               <div className={s.listItem}>
-                <UserPresentation user={item}/>
+                <EmployeePresentation employee={item}/>
               </div>
             </Link>
           ))}
