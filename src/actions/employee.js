@@ -24,7 +24,7 @@ export const saveEmployee = input => dispatch => {
 
   xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        dispatch(setEmployee(xmlhttp.responseText.json()));
+        dispatch(setEmployee(JSON.parse(xmlhttp.response)));
       }
   };
 
