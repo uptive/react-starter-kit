@@ -38,9 +38,8 @@
 }
 
 .actionButtonsContainer{
-  margin-left: auto;
-  margin-right: auto;
-  margin-top:10px;
-  margin-bottom: 20px;
   text-align: center;
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
 }

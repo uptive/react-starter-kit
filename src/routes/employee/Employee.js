@@ -90,8 +90,9 @@ class Employee extends Component {
     return (
       <div>
         { this.renderEditButton() }
-        { this.renderCancelButton() }
         { this.renderSaveButton() }
+        { this.renderCancelButton() }
+
       </div>);
   }
 

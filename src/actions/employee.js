@@ -31,7 +31,6 @@ export const getEmployee = input => dispatch => {
   .then(response => response.json())
   .then(function(json){
     dispatch(setEmployee(json))
-    console.log({employee:json, user:input.user});
     dispatch(setCanEditEmployee({employee:json, user:input.user}))
   });
 };
