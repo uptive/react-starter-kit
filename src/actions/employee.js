@@ -1,11 +1,26 @@
 /* eslint-disable import/prefer-default-export */
 
-import { SET_EMPLOYEE } from '../constants';
+import { SET_EMPLOYEE, EDIT_EMPLOYEE, SET_CAN_EDIT_EMPLOYEE, CANCEL_EDIT_EMPLOYEE } from '../constants';
 import fetch from '../core/fetch';
 
 export const setEmployee = (employee) => ({
   type: SET_EMPLOYEE,
   employee,
+});
+
+export const setCanEditEmployee = (employee, user) => ({
+  type: SET_CAN_EDIT_EMPLOYEE,
+  employee: employee,
+  user: user,
+});
+
+export const editEmployee = () => ({
+  type: EDIT_EMPLOYEE,
+});
+
+export const cancelEditEmployee = (employee) => ({
+  type: CANCEL_EDIT_EMPLOYEE,
+  employee: employee,
 });
 
 export const getEmployee = input => dispatch => {

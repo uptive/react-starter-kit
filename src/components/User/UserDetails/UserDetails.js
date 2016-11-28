@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './UserDetails.css';
-import UserPresentation from '../UserPresentation';
 import { Button, ButtonGroup, Glyphicon, FormGroup, FormControl, ControlLabel, Collapse, InputGroup } from 'react-bootstrap';
 import { saveEmployee } from '../../../actions/employee';
 
@@ -9,6 +8,8 @@ import { saveEmployee } from '../../../actions/employee';
 class UserDetails extends React.Component {
   static propTypes = {
     employee: PropTypes.object,
+    isEditing: PropTypes.bool,
+    shouldSave: PropTypes.bool,
   };
 
   static contextTypes = {
@@ -18,14 +19,21 @@ class UserDetails extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      edit: false,
+      isEditing: props.isEditing,
       employee: null,
       requiredProperties: ["firstname", "lastname", "birthday", "picture", "email", "developmentGoals", "description"],
     };
   }
 
   componentWillReceiveProps(nextProps){
-   this.setState({employee: nextProps.employee});
+   this.setState({
+     employee: nextProps.employee,
+     isEditing: nextProps.isEditing,
+   });
+
+   if(nextProps.shouldSave){
+     this.save();
+   }
   }
 
   render() {
@@ -35,12 +43,7 @@ class UserDetails extends React.Component {
     properties = showAllProperties(this.state.employee);
     return (
       <div>
-        <div className={s.editContainer}>
-          <div className={s.editButtonContainer}>
-            <Button bsSize="xsmall" onClick={ ()=> this.setState({ edit: !this.state.edit })}><Glyphicon glyph="edit" /> Edit</Button>
-          </div>
-        </div>
-        <Collapse in={!this.state.edit}>
+        <Collapse in={!this.state.isEditing}>
           <div>
             <p className={s.description}>
               {this.state.employee.description}
@@ -50,7 +53,7 @@ class UserDetails extends React.Component {
             </ButtonGroup>
           </div>
         </Collapse>
-        <Collapse in={this.state.edit}>
+        <Collapse in={this.state.isEditing}>
           <div>
             {properties.map((item, index) => (
               <InputGroup key={index}>
@@ -58,9 +61,6 @@ class UserDetails extends React.Component {
                 <FormControl className={s.link} value={item.value} data-property={item.property} onChange={(e) => this.onChange(e)}/>
               </InputGroup>
             ))}
-            <div className={s.saveButtonContainer}>
-              <Button onClick={ (e) => this.save(e)}><Glyphicon glyph="save"/> Save</Button>
-            </div>
           </div>
         </Collapse>
       </div>
@@ -68,9 +68,8 @@ class UserDetails extends React.Component {
     );
   }
 
-  save(event){
+  save(){
     this.context.store.dispatch(saveEmployee({employee:this.state.employee, token:this.context.store.getState().runtime.jwtToken}));
-    this.setState({ edit: !this.state.edit });
   }
 
   onChange(event){

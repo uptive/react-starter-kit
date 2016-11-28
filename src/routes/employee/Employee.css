@@ -36,3 +36,11 @@
 .profilePresentation img{
   margin-top:-100px !important;
 }
+
+.actionButtonsContainer{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
