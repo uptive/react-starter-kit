@@ -86,41 +86,7 @@ app.get('/login/google/return',
     res.redirect('/news');
   }
 );
-app.get('/logout',async (req, res, next) => {
-  res.clearCookie('id_token');
-  res.redirect('/');
-});
-/*
 
-app.use(expressJwt({
-  secret: auth.jwt.secret,
-  credentialsRequired: true,
-  getToken: req => req.cookies.id_token,
-})
-.unless({
-  path: [
-    '/',
-    '/login/google',
-    '/login/google/return',
-    '/login/jwt',
-  ]
-}));
-
-app.use(passport.initialize());
-
-
-
-app.get('/login/jwt',(req, res, next) => {
-  if(req.query && req.query.id_token){
-    var id_token = req.query.id_token;
-    const expiresIn = 60 * 60 * 24 * 180; // 180 days
-    res.cookie('id_token',id_token, { maxAge: 1000 * expiresIn, httpOnly: true });
-    res.redirect('/');
-  }
-});
-
-
-*/
 //
 // Register API middleware
 // -----------------------------------------------------------------------------

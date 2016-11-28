@@ -18,13 +18,13 @@ class Employee extends Component {
 
     this.state =  {
       employee: null,
+      canEdit: null,
     };
     this.changeHandler = this.context.store.subscribe(() => this.handleChange(this));
-
   }
 
   componentDidMount(){
-    this.context.store.dispatch(getEmployee({id: this.props.id, token: this.context.store.getState().runtime.jwtToken}));
+    this.context.store.dispatch(getEmployee({id: this.props.id, user: this.context.store.getState().user, token: this.context.store.getState().runtime.jwtToken}));
   }
 
   componentWillUnmount(){
@@ -34,10 +34,9 @@ class Employee extends Component {
   }
 
   handleChange(){
-    console.log(this.context.store.getState().employee.data);
     this.setState({
       employee: this.context.store.getState().employee.data,
-      canEdit: this.context.store.getState().canEdit,
+      canEdit: this.context.store.getState().employee.canEdit,
       isEditing: this.context.store.getState().employee.isEditing,
       shouldSave: false,
     });
@@ -51,8 +50,6 @@ class Employee extends Component {
     //TODO: figure out why his sets state even thought explicitly only calling cancelEditEmployee
     //this is a temporary fix for the problem
     this.context.store.dispatch(getEmployee({id: this.props.id, token: this.context.store.getState().runtime.jwtToken}));
-
-    //this.context.store.dispatch(cancelEditEmployee(this.state.employee));
   };
 
   handleSaveButtonClicked(){
@@ -89,6 +86,7 @@ class Employee extends Component {
 
   renderActionButtonsContianer(){
     if(!this.state.employee){ return; };
+    if(!this.state.canEdit){ return; };
     return (
       <div>
         { this.renderEditButton() }

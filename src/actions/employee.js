@@ -8,10 +8,10 @@ export const setEmployee = (employee) => ({
   employee,
 });
 
-export const setCanEditEmployee = (employee, user) => ({
+export const setCanEditEmployee = (input) => ({
   type: SET_CAN_EDIT_EMPLOYEE,
-  employee: employee,
-  user: user,
+  employee: input.employee,
+  user: input.user,
 });
 
 export const editEmployee = () => ({
@@ -31,6 +31,8 @@ export const getEmployee = input => dispatch => {
   .then(response => response.json())
   .then(function(json){
     dispatch(setEmployee(json))
+    console.log({employee:json, user:input.user});
+    dispatch(setCanEditEmployee({employee:json, user:input.user}))
   });
 };
 

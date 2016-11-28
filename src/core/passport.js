@@ -16,7 +16,6 @@ passport.use(new GoogleStrategy({
   /* eslint-disable no-underscore-dangle */
   const loginName = 'google';
   const claimType = 'urn:google:access_token';
-
   const fooBar = async () => {
     if( !profile.email || (profile.email && !profile.email.endsWith('@uptive.se'))){
       done(null);
@@ -26,12 +25,20 @@ passport.use(new GoogleStrategy({
         done(null, {
           id: req.user.id,
           email: profile.email,
+          name: {
+            firstname: profile.name.givenName,
+            lastname: profile.name.familyName,
+          },
         });
       }
       else{
         done(null, {
           id: profile.id,
           email: profile.email,
+          name: {
+            firstname: profile.name.givenName,
+            lastname: profile.name.familyName,
+          },
         });
       }
     }

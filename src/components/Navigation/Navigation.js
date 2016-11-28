@@ -7,39 +7,24 @@ import MenuPresentation from '../User/MenuPresentation';
 import { Popover, OverlayTrigger } from 'react-bootstrap';
 
 function Navigation({ className }, context ) {
-  var content = getContentBasedOnLoggedInUser(context.store.getState().user);
   return (
     <div className={cx(s.root, className)} role="navigation">
-      { content }
+      { getContentBasedOnLoggedInUser(context.store.getState().user) }
     </div>
   );
 }
-isLoggedIn
 
 function getContentBasedOnLoggedInUser(user){
-
-  var content = null;
-
-  const popoverBottom = (
-    <Popover id="popover-positioned-bottom" title="Popover bottom">
-      <strong>Holy guacamole!</strong> Check this info.
-    </Popover>
-  );
-
-  if(isLoggedIn(user)){
+  if(!isLoggedIn(user)) return null;
 //<MenuPresentation />
-    content=(
-      <div>
-        <Link className={s.link} to="/news">News</Link>
-        <span className={s.spacer}> | </span>
-        <Link className={s.link} to="/employees">Employees</Link>
-        <span className={s.spacer}> | </span>
-        <Link className={s.link} to="/logout">Logout</Link>
-
-
-      </div> );
-  }
-  return content;
+  return (
+    <div>
+      <Link className={s.link} to="/news">News</Link>
+      <span className={s.spacer}> | </span>
+      <Link className={s.link} to="/employees">Employees</Link>
+      <span className={s.spacer}> | </span>
+      <Link className={s.link} to="/logout">Logout</Link>
+    </div> );
 }
 
 function isLoggedIn(user){

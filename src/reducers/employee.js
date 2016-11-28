@@ -21,7 +21,7 @@ export default function employee(state = {}, action) {
     case SET_CAN_EDIT_EMPLOYEE:
       if(!action.employee || !action.user){ return state; }
       var canEdit = false;
-      if(action.employee.email !== action.user.email){
+      if(action.employee.email === action.user.email){
         canEdit = true;
       }
       return {
