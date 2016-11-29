@@ -3,7 +3,8 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
 import EmployeePresentation from '../../components/Employee/EmployeePresentation';
 import UserDetails from '../../components/User/UserDetails';
-import EditButton from '../../components/EditButton';
+import ActionButton from '../../components/Action/ActionButton';
+import ActionMenu from '../../components/Action/ActionMenu';
 import s from './Employee.css';
 import { getEmployee, editEmployee, cancelEditEmployee, setCanEditEmployee } from '../../actions/employee';
 
@@ -66,12 +67,12 @@ class Employee extends Component {
               <div className={s.profilePresentation}>
                 { this.renderEmployeePresentation() }
               </div>
-              <div className={s.actionButtonsContainer}>
-                {this.renderActionButtonsContianer() }
-              </div>
               <div className={s.profileSection}>
                 <UserDetails employee={this.state.employee} isEditing={this.state.isEditing} canEdit={this.state.canEdit} shouldSave={this.state.shouldSave}/>
               </div>
+              <ActionMenu>
+                {this.renderActionButtonsContianer() }
+              </ActionMenu>
             </div>
           </div>
         </div>
@@ -98,17 +99,17 @@ class Employee extends Component {
 
   renderEditButton(){
     if(this.state.isEditing){return;}
-    return (<EditButton text="Edit" icon="pencil" onClick={this.handleEditContentChange.bind(this)}/>);
+    return (<ActionButton text="Edit" icon="pencil" onClick={this.handleEditContentChange.bind(this)}/>);
   };
 
   renderCancelButton(){
     if(!this.state.isEditing){return;}
-    return (<EditButton text="Cancel" icon="remove" onClick={this.handleCancelButtonClicked.bind(this)}/>);
+    return (<ActionButton text="Cancel" icon="remove" onClick={this.handleCancelButtonClicked.bind(this)}/>);
   };
 
   renderSaveButton(){
     if(!this.state.isEditing){return;}
-    return (<EditButton text="Save" icon="floppy-saved" onClick={this.handleSaveButtonClicked.bind(this)}/>);
+    return (<ActionButton text="Save" icon="floppy-saved" onClick={this.handleSaveButtonClicked.bind(this)}/>);
   };
 }
 

@@ -1,11 +1,19 @@
 /* eslint-disable import/prefer-default-export */
 
-import { SET_NEWS } from '../constants';
+import { SET_NEWS, CREATE_NEWS, CANCEL_CREATE_NEWS } from '../constants';
 import fetch from '../core/fetch';
 
 export const setNews = (data) => ({
   type: SET_NEWS,
   data: data,
+})
+
+export const createNews = () => ({
+  type: CREATE_NEWS,
+})
+
+export const cancelCreateNews = () => ({
+  type: CANCEL_CREATE_NEWS,
 })
 
 export const getNews = input => dispatch => {

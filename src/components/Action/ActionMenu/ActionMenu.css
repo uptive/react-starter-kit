@@ -1,0 +1,9 @@
+@import '../../variables.css';
+
+.root {
+	text-align: center;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  z-index: 1000;
+}
