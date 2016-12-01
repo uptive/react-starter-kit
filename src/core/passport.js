@@ -21,10 +21,14 @@ passport.use(new GoogleStrategy({
       done(null);
     }
     else {
+
+      var username = profile.email.split("@")[0];
+
       if (req.user) {
         done(null, {
           id: req.user.id,
           email: profile.email,
+          username: username,
           name: {
             firstname: profile.name.givenName,
             lastname: profile.name.familyName,
@@ -35,6 +39,7 @@ passport.use(new GoogleStrategy({
         done(null, {
           id: profile.id,
           email: profile.email,
+          username: username,
           name: {
             firstname: profile.name.givenName,
             lastname: profile.name.familyName,

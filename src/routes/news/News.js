@@ -3,10 +3,10 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
 import Link from '../../components/Link';
 import s from './News.css';
-import { getNews, createNews, cancelCreateNews } from '../../actions/news';
-import { Button, Modal } from 'react-bootstrap';
+import { getNews, createNews } from '../../actions/news';
 import EditButton from '../../components/Action/ActionButton';
 import ActionMenu from '../../components/Action/ActionMenu';
+import CreateNews from '../../components/News/CreateNews';
 
 class News extends Component {
 
@@ -19,7 +19,6 @@ class News extends Component {
 
     this.state =  {
       news: this.context.store.getState().news.data || null,
-      create: false,
     };
 
     this.changeHandler = this.context.store.subscribe(() => this.handleChange(this))
@@ -38,12 +37,7 @@ class News extends Component {
   handleChange(){
     this.setState({
       news: this.context.store.getState().news.data,
-      create: this.context.store.getState().news.create
     });
-  }
-
-  close() {
-    this.context.store.dispatch(cancelCreateNews());
   }
 
   handleCreateContentChange(){
@@ -58,19 +52,7 @@ class News extends Component {
           <div className={s.listContainer}>
             { renderNewsItems(this.state.news) }
           </div>
-          <Modal show={this.state.create} onHide={this.close.bind(this)}>
-            <Modal.Header closeButton>
-              <Modal.Title>Whats the news?</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <h4>Text in a modal</h4>
-              <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-
-              </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={this.close.bind(this)}>Close</Button>
-            </Modal.Footer>
-          </Modal>
+          <CreateNews/>
           <ActionMenu>
             {this.renderCreateButton() }
           </ActionMenu>
@@ -81,7 +63,7 @@ class News extends Component {
 
   renderCreateButton(){
     if(!this.state.news){return;}
-    return "";//(<EditButton text="Add" icon="plus" onClick={this.handleCreateContentChange.bind(this)}/>);
+    return (<EditButton text="Add" icon="plus" onClick={this.handleCreateContentChange.bind(this)}/>);
   };
 }
 

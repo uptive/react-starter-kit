@@ -1,20 +1,25 @@
 /* eslint-disable import/prefer-default-export */
 
-import { SET_NEWS, CREATE_NEWS, CANCEL_CREATE_NEWS } from '../constants';
+import { SET_NEWS, ADD_NEWS, CREATE_NEWS, CANCEL_CREATE_NEWS } from '../constants';
 import fetch from '../core/fetch';
 
 export const setNews = (data) => ({
   type: SET_NEWS,
   data: data,
-})
+});
+
+export const addNews = (data) => ({
+  type: ADD_NEWS,
+  news: data,
+});
 
 export const createNews = () => ({
   type: CREATE_NEWS,
-})
+});
 
 export const cancelCreateNews = () => ({
   type: CANCEL_CREATE_NEWS,
-})
+});
 
 export const getNews = input => dispatch => {
   const options = {
@@ -25,4 +30,18 @@ export const getNews = input => dispatch => {
   .then(function(json){
     dispatch(setNews(json))
   });
+}
+
+export const saveNews = input => dispatch => {
+  var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+
+  xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        dispatch(getNews(input));
+      }
+  };
+  xmlhttp.open("POST", "https://uptiverse-news.herokuapp.com/news/create");
+  xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xmlhttp.setRequestHeader("Authorization", "JWT " + input.token);
+  xmlhttp.send(JSON.stringify({news:input.news}));
 }

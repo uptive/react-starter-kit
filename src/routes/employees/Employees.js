@@ -11,7 +11,7 @@ function Employees({ employees }) {
       <div className={s.root}>
         <div className={s.listContainer}>
           {employees.map((item, index) => (
-            <Link className={s.link} to={formatRoute(item._id)} key={index}>
+            <Link className={s.link} to={formatRoute(item.username)} key={index}>
               <div className={s.listItem}>
                 <EmployeePresentation employee={item}/>
               </div>
