@@ -5,11 +5,6 @@
   padding-right: 20px;
 }
 
-@font-face{
-  font-family: 'josefin-sans';
-  src: url('/josefin-sans/JosefinSans-SemiBold.ttf') format('truetype');
-}
-
 .heading{
   font-family: 'josefin-sans';
   font-size: 50px;
@@ -20,6 +15,9 @@
 .listContainer{
   margin-left:auto;
   margin-right:auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-bottom: 50px;
   max-width:800px;
 }
 

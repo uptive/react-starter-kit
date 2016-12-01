@@ -13,11 +13,6 @@
   padding-right: 20px;
 }
 
-@font-face{
-  font-family: 'josefin-sans';
-  src: url('/josefin-sans/JosefinSans-SemiBold.ttf') format('truetype');
-}
-
 .heading{
   font-family: 'josefin-sans';
   font-size: 50px;
