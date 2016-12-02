@@ -48,9 +48,11 @@ class UserDetails extends React.Component {
             <p className={s.description}>
               {this.state.employee.description}
             </p>
+        
             <ButtonGroup>
               <Button href={this.state.employee.developmentGoals}> <Glyphicon glyph="road" /> Development plan</Button>
             </ButtonGroup>
+
           </div>
         </Collapse>
         <Collapse in={this.state.isEditing}>

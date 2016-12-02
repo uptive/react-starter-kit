@@ -7,6 +7,7 @@ import { getNews, createNews } from '../../actions/news';
 import EditButton from '../../components/Action/ActionButton';
 import ActionMenu from '../../components/Action/ActionMenu';
 import CreateNews from '../../components/News/CreateNews';
+import Loading from 'react-loader';
 
 class News extends Component {
 
@@ -68,7 +69,30 @@ class News extends Component {
 }
 
 function renderNewsItems(news){
-  if(!news){ return; }
+
+  var options = {
+    lines: 20,
+    length: 20,
+    width: 3,
+    radius: 30,
+    scale: 1.00,
+    corners: 0.9,
+    color: '#000',
+    opacity: 0.20,
+    rotate: 0,
+    direction: 1,
+    speed: 1,
+    trail: 60,
+    fps: 20,
+    zIndex: 2e9,
+    top: '60%',
+    left: '50%',
+    shadow: false,
+    hwaccel: false,
+    position: 'absolute'
+  };
+
+  if(!news){ return (<Loading loaded={false} options={options} className="spinner" ></Loading>); }
 
   return news.map((item, index) => (
       <div className={s.newsItem} key={index}>
