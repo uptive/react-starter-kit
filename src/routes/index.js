@@ -20,6 +20,8 @@ export default {
 //    require('./me').default,
     require('./employee').default,
 
+    require('./recruits').default,
+
     require('./news').default,
     require('./home').default,
 

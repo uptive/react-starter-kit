@@ -74,7 +74,7 @@ function renderNewsItems(news){
     lines: 20,
     length: 20,
     width: 3,
-    radius: 30,
+    radius: 25,
     scale: 1.00,
     corners: 0.9,
     color: '#000',

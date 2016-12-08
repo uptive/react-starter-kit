@@ -33,6 +33,7 @@ class Html extends React.Component {
           <meta name="description" content={description} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+          <script src="https://use.fontawesome.com/22629a1cbf.js"></script>
           {style && <style id="css" dangerouslySetInnerHTML={{ __html: style }} />}
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" />
           <link rel="stylesheet" href="style.css" />
