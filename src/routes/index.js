@@ -21,6 +21,7 @@ export default {
     require('./employee').default,
 
     require('./recruits').default,
+    require('./recruit').default,
 
     require('./news').default,
     require('./home').default,

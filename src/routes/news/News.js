@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
 import Link from '../../components/Link';
+import Date from '../../components/Date';
 import s from './News.css';
 import { getNews, createNews } from '../../actions/news';
 import EditButton from '../../components/Action/ActionButton';
@@ -98,7 +99,7 @@ function renderNewsItems(news){
       <div className={s.newsItem} key={index}>
         <h2 className={s.newsItemHeading}>{item.heading}</h2>
         <p className={s.newsItemText}>{item.text}</p>
-        <p className={s.newsItemPublished}>{formatDate(item.published)} - <Link to={formatRoute(item.publisherId)} className={s.link}>{item.publisher}</Link></p>
+        <p className={s.newsItemPublished}><Date>{item.published}</Date> - <Link to={formatRoute(item.publisherId)} className={s.link}>{item.publisher}</Link></p>
       </div>
   ));
 }
@@ -106,10 +107,5 @@ function renderNewsItems(news){
 function formatRoute(id){
   return "/employee/" + id;
 }
-
-function formatDate(unformatted){
-  return unformatted.substring(0, 10);
-}
-
 
 export default withStyles(s)(News);

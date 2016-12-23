@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
+import Link from '../../components/Link';
 import s from './Recruits.css';
 import { FormControl , InputGroup, Glyphicon, Button, Badge} from 'react-bootstrap';
 import { findRecruits } from '../../actions/recruit';
@@ -83,19 +84,21 @@ class Recruits extends Component {
         <ul className={s.searchResultList}>
           {recruits.map((item, index) => (
             <li key={index}>
-              <div>
-                <div className={s.name}>
-                  {item.firstname + " " + item.lastname}
+              <Link to={formatRoute(item._id)} className={s.link}>
+                <div>
+                  <div className={s.name}>
+                    { item.firstname + " " + item.lastname }
+                  </div>
+                  <div className={s.connections}>
+                    <FontAwesome className={linkedInIconStyle(item,s)} name='linkedin-square'/>
+                    <FontAwesome className={facebookIconStyle(item,s)} name='facebook-square'/>
+                    <FontAwesome className={githubIconStyle(item,s)} name='github-square'/>
+                    <FontAwesome className={phoneIconStyle(item,s)} name='phone-square'/>
+                    <FontAwesome className={mailIconStyle(item,s)} name='envelope'/>
+                  </div>
+                  {this.renderComments(item)}
                 </div>
-                <div className={s.connections}>
-                  <FontAwesome className={linkedInIconStyle(item,s)} name='linkedin-square'/>
-                  <FontAwesome className={facebookIconStyle(item,s)} name='facebook-square'/>
-                  <FontAwesome className={githubIconStyle(item,s)} name='github-square'/>
-                  <FontAwesome className={phoneIconStyle(item,s)} name='phone-square'/>
-                  <FontAwesome className={mailIconStyle(item,s)} name='envelope'/>
-                </div>
-                {this.renderComments(item)}
-              </div>
+              </Link>
             </li>
           ))}
         </ul>
@@ -142,7 +145,7 @@ function mailIconStyle(item, s){
 }
 
 function formatRoute(id){
-  return "/recruits/" + id;
+  return "/recruit/" + id;
 }
 
 export default withStyles(s)(Recruits);

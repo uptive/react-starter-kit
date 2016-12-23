@@ -31,10 +31,6 @@
   background-color: #eee;
 }
 
-.searchResultList li:hover{
-  background-color: #ddd;
-}
-
 .name{
   font-size: 20px;
   margin: 10px;
@@ -56,17 +52,17 @@
   color: #444444;
 }
 
+.commentBox{
+  padding: 0px;
+}
+
 .comments{
-  display: inline-block;
-  float:right;
-  margin-right: 10px;
-  margin-top: 12px;
+  list-style-type: none;
+  padding: 0px;
 }
 
-.link{
-  color:#555555;
-}
-
-.link:hover{
-  color:#333333;
+.comments li{
+  padding: 10px;
+  margin-bottom:5px;
+  background-color: #eeeeee;
 }
