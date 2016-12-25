@@ -36,7 +36,7 @@ class PersonalDevelopment extends React.Component {
           {this.state.employee.developmentGoals}
           <br/>
           <ButtonGroup className={s.button}>
-            <Button href={this.state.employee.developmentGoalsLink}> Full development plan <Glyphicon glyph="menu-right" /></Button>
+            <Button href={this.state.employee.developmentGoalsLink} target="BLANK"> Full development plan <Glyphicon glyph="menu-right" /></Button>
           </ButtonGroup>
         </div>
       </div>
