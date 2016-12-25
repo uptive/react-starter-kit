@@ -3,6 +3,9 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
 import EmployeePresentation from '../../components/Employee/EmployeePresentation';
 import UserDetails from '../../components/User/UserDetails';
+import ContactInfo from '../../components/User/ContactInfo';
+import UserEdit from '../../components/User/UserEdit';
+
 import ActionButton from '../../components/Action/ActionButton';
 import ActionMenu from '../../components/Action/ActionMenu';
 import s from './Employee.css';
@@ -43,20 +46,6 @@ class Employee extends Component {
     });
   }
 
-  handleEditContentChange(){
-    this.context.store.dispatch(editEmployee());
-  };
-
-  handleCancelButtonClicked(){
-    //TODO: figure out why his sets state even thought explicitly only calling cancelEditEmployee
-    //this is a temporary fix for the problem
-    this.context.store.dispatch(getEmployee({id: this.props.id, token: this.context.store.getState().runtime.jwtToken}));
-  };
-
-  handleSaveButtonClicked(){
-    this.setState({shouldSave: true});
-  };
-
   render() {
     return (
       <Layout>
@@ -65,24 +54,20 @@ class Employee extends Component {
             <div className={s.profileHeader}></div>
             <div className={s.profileContainer}>
               <div className={s.profilePresentation}>
-                { this.renderEmployeePresentation() }
+                <EmployeePresentation employee={this.state.employee}/>
               </div>
               <div className={s.profileSection}>
                 <UserDetails employee={this.state.employee} isEditing={this.state.isEditing} canEdit={this.state.canEdit} shouldSave={this.state.shouldSave}/>
+                <UserEdit employee={this.state.employee} isEditing={this.state.isEditing} canEdit={this.state.canEdit} shouldSave={this.state.shouldSave}/>
               </div>
               <ActionMenu>
-                {this.renderActionButtonsContianer() }
+                { this.renderActionButtonsContianer() }
               </ActionMenu>
             </div>
           </div>
         </div>
       </Layout>
     );
-  }
-
-  renderEmployeePresentation(){
-    if(!this.state.employee){ return; };
-    return (<EmployeePresentation employee={this.state.employee}/>);
   }
 
   renderActionButtonsContianer(){
@@ -110,6 +95,21 @@ class Employee extends Component {
   renderSaveButton(){
     if(!this.state.isEditing){return;}
     return (<ActionButton text="Save" icon="floppy-saved" onClick={this.handleSaveButtonClicked.bind(this)}/>);
+  };
+
+
+  handleEditContentChange(){
+    this.context.store.dispatch(editEmployee());
+  };
+
+  handleCancelButtonClicked(){
+    //TODO: figure out why his sets state even thought explicitly only calling cancelEditEmployee
+    //this is a temporary fix for the problem
+    this.context.store.dispatch(getEmployee({id: this.props.id, token: this.context.store.getState().runtime.jwtToken}));
+  };
+
+  handleSaveButtonClicked(){
+    this.setState({shouldSave: true});
   };
 }
 
