@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './UserDetails.css';
+import s from './Description.css';
 import { Button, ButtonGroup, Glyphicon, FormGroup, FormControl, ControlLabel, Collapse, InputGroup } from 'react-bootstrap';
 import { saveEmployee } from '../../../actions/employee';
 
 
-class UserDetails extends React.Component {
+class Description extends React.Component {
   static propTypes = {
     employee: PropTypes.object,
   };
@@ -45,4 +45,4 @@ class UserDetails extends React.Component {
   }
 }
 
-export default withStyles(s)(UserDetails);
+export default withStyles(s)(Description);

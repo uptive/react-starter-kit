@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
 import EmployeePresentation from '../../components/Employee/EmployeePresentation';
-import UserDetails from '../../components/User/UserDetails';
+import Description from '../../components/Employee/Description';
 import ContactInfo from '../../components/User/ContactInfo';
 import UserEdit from '../../components/User/UserEdit';
 
@@ -61,12 +61,10 @@ class Employee extends Component {
                 <EmployeePresentation employee={this.state.employee}/>
               </div>
               <div className={s.profileSection}>
-                <UserDetails employee={this.state.employee} isEditing={this.state.isEditing} canEdit={this.state.canEdit} shouldSave={this.state.shouldSave}/>
-                <UserEdit employee={this.state.employee} isEditing={this.state.isEditing} canEdit={this.state.canEdit} shouldSave={this.state.shouldSave}/>
+                <Description employee={this.state.employee} />
               </div>
-              <ActionMenu>
-                { this.renderActionButtonsContianer() }
-              </ActionMenu>
+              <ActionMenu> { this.renderActionButtonsContianer() } </ActionMenu>
+              <UserEdit employee={this.state.employee} isEditing={this.state.isEditing} canEdit={this.state.canEdit} shouldSave={this.state.shouldSave}/>
             </div>
           </div>
         </div>

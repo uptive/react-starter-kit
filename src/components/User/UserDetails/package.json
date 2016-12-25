@@ -1,6 +1,0 @@
-{
-  "name": "UserDetails",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./UserDetails.js"
-}
