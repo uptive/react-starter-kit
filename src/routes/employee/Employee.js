@@ -46,6 +46,10 @@ class Employee extends Component {
     });
   }
 
+  handleEditContentChange(){
+    this.context.store.dispatch(editEmployee());
+  };
+
   render() {
     return (
       <Layout>
@@ -75,42 +79,10 @@ class Employee extends Component {
     if(!this.state.canEdit){ return; };
     return (
       <div>
-        { this.renderEditButton() }
-        { this.renderSaveButton() }
-        { this.renderCancelButton() }
-
+        <ActionButton text="Edit" icon="pencil" onClick={this.handleEditContentChange.bind(this)}/>
       </div>);
   }
 
-  renderEditButton(){
-    if(this.state.isEditing){return;}
-    return (<ActionButton text="Edit" icon="pencil" onClick={this.handleEditContentChange.bind(this)}/>);
-  };
-
-  renderCancelButton(){
-    if(!this.state.isEditing){return;}
-    return (<ActionButton text="Cancel" icon="remove" onClick={this.handleCancelButtonClicked.bind(this)}/>);
-  };
-
-  renderSaveButton(){
-    if(!this.state.isEditing){return;}
-    return (<ActionButton text="Save" icon="floppy-saved" onClick={this.handleSaveButtonClicked.bind(this)}/>);
-  };
-
-
-  handleEditContentChange(){
-    this.context.store.dispatch(editEmployee());
-  };
-
-  handleCancelButtonClicked(){
-    //TODO: figure out why his sets state even thought explicitly only calling cancelEditEmployee
-    //this is a temporary fix for the problem
-    this.context.store.dispatch(getEmployee({id: this.props.id, token: this.context.store.getState().runtime.jwtToken}));
-  };
-
-  handleSaveButtonClicked(){
-    this.setState({shouldSave: true});
-  };
 }
 
 export default withStyles(s)(Employee);

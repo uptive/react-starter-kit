@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './UserEdit.css';
-import { Button, ButtonGroup, Glyphicon, FormGroup, FormControl, ControlLabel, Collapse, InputGroup } from 'react-bootstrap';
-import { saveEmployee } from '../../../actions/employee';
+import { Button, ButtonGroup, Glyphicon, FormGroup, FormControl, ControlLabel, Collapse, InputGroup, Modal } from 'react-bootstrap';
+import { saveEmployee, getEmployee } from '../../../actions/employee';
 
 
 class UserEdit extends React.Component {
@@ -42,24 +42,33 @@ class UserEdit extends React.Component {
     var properties = addProperties(this.state.employee, this.state.requiredProperties);
     properties = showAllProperties(this.state.employee);
     return (
-      <div>
-        <Collapse in={this.state.isEditing}>
-          <div>
-            {properties.map((item, index) => (
-              <InputGroup key={index}>
-                <InputGroup.Addon>{item.property}</InputGroup.Addon>
-                <FormControl className={s.link} value={item.value} data-property={item.property} onChange={(e) => this.onChange(e)}/>
-              </InputGroup>
-            ))}
-          </div>
-        </Collapse>
-      </div>
+      <Modal show={this.state.isEditing} onHide={this.close.bind(this)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit userinfo</Modal.Title>
+        </Modal.Header>
+          {properties.map((item, index) => (
+            <InputGroup key={index}>
+              <InputGroup.Addon>{item.property}</InputGroup.Addon>
+              <FormControl className={s.link} value={item.value} data-property={item.property} onChange={(e) => this.onChange(e)}/>
+            </InputGroup>
+          ))}
+        <Modal.Body>
+          </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.close.bind(this)}>Close</Button>
+          <Button bsStyle="primary" onClick={this.save.bind(this)}>Save</Button>
+        </Modal.Footer>
+      </Modal>
 
     );
   }
 
   save(){
     this.context.store.dispatch(saveEmployee({employee:this.state.employee, token:this.context.store.getState().runtime.jwtToken}));
+  }
+
+  close() {
+    this.context.store.dispatch(getEmployee({id: this.state.employee.username, token: this.context.store.getState().runtime.jwtToken}));
   }
 
   onChange(event){
