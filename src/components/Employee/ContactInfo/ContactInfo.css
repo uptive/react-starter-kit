@@ -1,19 +1,30 @@
-.editContainer {
-  margin-left:auto;
-  margin-right:auto;
+.root {
+  text-align: center;
 }
 
 .divider{
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  font-size: 50px;
-  font-family: serif;
-  text-align: center;
-  line-height: 10px;
-  color: rgba(0,100,150,0.3);
+  margin-top:40px;
 }
 
-.editContainer button{
+.button{
+  display: inline-block;
+  margin: 10px;
+}
 
+.container{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contactInfo{
+  min-width: 150px;
+  max-width: 250px;
+  display: inline-block;
+  margin: 5px;
+  padding:3px;
+}
+
+.contactInfo:hover{
+  background-color: #eeeeee;
 }

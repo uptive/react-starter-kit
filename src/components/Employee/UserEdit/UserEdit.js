@@ -21,7 +21,7 @@ class UserEdit extends React.Component {
     this.state = {
       isEditing: props.isEditing,
       employee: null,
-      requiredProperties: ["firstname", "lastname", "birthday", "picture", "email", "developmentGoals", "description"],
+      requiredProperties: ["firstname", "lastname", "birthday", "picture", "email", "developmentGoals", "developmentGoalsLink", "description"],
     };
   }
 

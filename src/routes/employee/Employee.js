@@ -4,6 +4,7 @@ import Layout from '../../components/Layout';
 import EmployeePresentation from '../../components/Employee/EmployeePresentation';
 import Description from '../../components/Employee/Description';
 import ContactInfo from '../../components/Employee/ContactInfo';
+import PersonalDevelopment from '../../components/Employee/PersonalDevelopment';
 import UserEdit from '../../components/Employee/UserEdit';
 import ActionButton from '../../components/Action/ActionButton';
 import ActionMenu from '../../components/Action/ActionMenu';
@@ -61,6 +62,7 @@ class Employee extends Component {
               </div>
               <div className={s.profileSection}>
                 <Description employee={this.state.employee} />
+                <PersonalDevelopment employee={this.state.employee} />
                 <ContactInfo employee={this.state.employee} />
               </div>
               <ActionMenu> { this.renderActionButtonsContianer() } </ActionMenu>

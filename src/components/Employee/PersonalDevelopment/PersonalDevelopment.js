@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './Description.css';
+import s from './PersonalDevelopment.css';
 import { Button, ButtonGroup, Glyphicon, FormGroup, FormControl, ControlLabel, Collapse, InputGroup } from 'react-bootstrap';
 import { saveEmployee } from '../../../actions/employee';
 
 
-class Description extends React.Component {
+class PersonalDevelopment extends React.Component {
   static propTypes = {
     employee: PropTypes.object,
   };
@@ -28,17 +28,20 @@ class Description extends React.Component {
   }
 
   render() {
-    if(!this.state.employee){ return null; }
+    if(!this.state.employee || !this.state.employee.developmentGoalsLink){ return null; }
     return (
       <div className={s.root}>
         <div>
-            <p className={s.description}>
-              {this.state.employee.description}
-            </p>
-          </div>
+          <h4 className={s.divider}> Personal development</h4>
+          {this.state.employee.developmentGoals}
+          <br/>
+          <ButtonGroup className={s.button}>
+            <Button href={this.state.employee.developmentGoalsLink}> Full development plan <Glyphicon glyph="menu-right" /></Button>
+          </ButtonGroup>
+        </div>
       </div>
     );
   }
 }
 
-export default withStyles(s)(Description);
+export default withStyles(s)(PersonalDevelopment);
