@@ -3,9 +3,8 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
 import EmployeePresentation from '../../components/Employee/EmployeePresentation';
 import Description from '../../components/Employee/Description';
-import ContactInfo from '../../components/User/ContactInfo';
-import UserEdit from '../../components/User/UserEdit';
-
+import ContactInfo from '../../components/Employee/ContactInfo';
+import UserEdit from '../../components/Employee/UserEdit';
 import ActionButton from '../../components/Action/ActionButton';
 import ActionMenu from '../../components/Action/ActionMenu';
 import s from './Employee.css';
@@ -62,6 +61,7 @@ class Employee extends Component {
               </div>
               <div className={s.profileSection}>
                 <Description employee={this.state.employee} />
+                <ContactInfo employee={this.state.employee} />
               </div>
               <ActionMenu> { this.renderActionButtonsContianer() } </ActionMenu>
               <UserEdit employee={this.state.employee} isEditing={this.state.isEditing} canEdit={this.state.canEdit} shouldSave={this.state.shouldSave}/>

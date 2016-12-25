@@ -1,6 +1,5 @@
 import React from 'react';
 import Employee from './Employee';
-import fetch from '../../core/fetch';
 
 export default {
 
