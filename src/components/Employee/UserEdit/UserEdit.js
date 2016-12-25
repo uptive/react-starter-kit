@@ -44,7 +44,7 @@ class UserEdit extends React.Component {
     return (
       <Modal show={this.state.isEditing} onHide={this.close.bind(this)}>
         <Modal.Header closeButton>
-          <Modal.Title>Edit userinfo</Modal.Title>
+          <Modal.Title>Let everyone know what´s changed</Modal.Title>
         </Modal.Header>
           {properties.map((item, index) => (
             <InputGroup key={index}>

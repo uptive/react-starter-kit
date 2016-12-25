@@ -1,37 +1,64 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
 import s from './Employees.css';
 import Link from '../../components/Link';
 import EmployeePresentation from '../../components/Employee/EmployeePresentation';
+import { getEmployees } from '../../actions/employees';
 
-function Employees({ employees }) {
-  return (
-    <Layout>
-      <div className={s.root}>
-        <div className={s.listContainer}>
-          {employees.map((item, index) => (
-            <Link className={s.link} to={formatRoute(item.username)} key={index}>
-              <div className={s.listItem}>
-                <EmployeePresentation employee={item}/>
-              </div>
-            </Link>
-          ))}
+class Employees extends Component {
+
+  static contextTypes = {
+      store: React.PropTypes.object
+  };
+
+  constructor(props, context) {
+    super(props, context);
+
+    this.state =  {
+      employees: []
+    };
+    this.changeHandler = this.context.store.subscribe(() => this.handleChange(this));
+  }
+
+  componentDidMount(){
+    this.context.store.dispatch(getEmployees({ token: this.context.store.getState().runtime.jwtToken}));
+  }
+
+  componentWillUnmount(){
+    if(this.changeHandler){
+      this.changeHandler();
+    }
+  }
+
+  handleChange(){
+    this.setState({
+      employees: this.context.store.getState().employees.data
+    });
+  }
+
+  render() {
+    return (
+      <Layout>
+        <div className={s.root}>
+          <div className={s.listContainer}>
+            {this.state.employees.map((item, index) => (
+              <Link className={s.link} to={formatRoute(item.username)} key={index}>
+                <div className={s.listItem}>
+                  <EmployeePresentation employee={item}/>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-    </Layout>
-  );
+      </Layout>
+    );
+  }
+
 }
 
 function formatRoute(id){
   return "/employee/" + id;
 }
-
-Employees.propTypes = {
-  employees: PropTypes.arrayOf(PropTypes.shape({
-    firstname: PropTypes.string.isRequired,
-    lastname: PropTypes.string.isRequired,
-  })).isRequired,
-};
 
 export default withStyles(s)(Employees);

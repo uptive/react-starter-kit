@@ -3,6 +3,7 @@ import user from './user';
 import runtime from './runtime';
 import news from './news';
 import employee from './employee';
+import employees from './employees';
 import recruits from './recruits';
 
 export default combineReducers({
@@ -10,5 +11,6 @@ export default combineReducers({
   runtime,
   news,
   employee,
+  employees,
   recruits,
 });
