@@ -32,9 +32,10 @@ class PersonalDevelopment extends React.Component {
     return (
       <div className={s.root}>
         <div>
-          <h4 className={s.divider}> Personal development</h4>
-          {this.state.employee.developmentGoals}
-          <br/>
+          <h4 className={s.header}> Personal development</h4>
+          <p className={s.text}>
+            {this.state.employee.developmentGoals}
+          </p>
           <ButtonGroup className={s.button}>
             <Button href={this.state.employee.developmentGoalsLink} target="BLANK"> Full development plan <Glyphicon glyph="menu-right" /></Button>
           </ButtonGroup>

@@ -1,9 +1,24 @@
 .root {
   text-align: center;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #DDDDDD;
+  margin-top:40px;
+  padding: 0px 65px 20px 65px;
 }
 
-.divider{
-  margin-top:40px;
+.text {
+  text-align: left;
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 300;
+}
+
+.header{
+  background-color: #ffffff;
+  margin-top: -10px;
+
 }
 
 .button{
