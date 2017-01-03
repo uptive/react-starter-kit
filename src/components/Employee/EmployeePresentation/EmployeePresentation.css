@@ -1,3 +1,8 @@
+@font-face{
+  font-family: 'josefin-sans';
+  src: url('/josefin-sans/JosefinSans-SemiBold.ttf') format('truetype');
+}
+
 .profileHeader {
   background: #555555;
   height:150px;
@@ -29,6 +34,18 @@
   margin-left:auto;
   margin-right:auto;
   width:800px;
+}
+
+.picture {
+  width:210px;
+  height:210px;
+  margin-left:auto;
+  margin-right:auto;
+  border-radius: 105px;
+  -webkit-border-radius: 105px;
+  -moz-border-radius: 105px;
+  border: 1px solid #CCCCCC; 
+  padding: 5px;
 }
 
 .picture img {

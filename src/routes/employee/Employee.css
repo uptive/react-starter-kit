@@ -16,10 +16,11 @@
   height:150px;
 }
 .profileContainer {
-  background: #FFFFFF;
   padding-left: 30px;
   padding-right: 30px;
   margin-bottom: 50px;
+  position: relative;
+  top: -105px;
 }
 
 .pictureContainer {
@@ -34,6 +35,8 @@
   max-width:800px;
 }
 
-.profilePresentation img{
-  margin-top:-100px !important;
+.profilePresentation {
+  margin-left:auto;
+  margin-right:auto;
+  width: 250px;
 }
