@@ -44,8 +44,9 @@
   border-radius: 105px;
   -webkit-border-radius: 105px;
   -moz-border-radius: 105px;
-  border: 1px solid #CCCCCC; 
+  border: 1px solid #CCCCCC;
   padding: 5px;
+  overflow: hidden;
 }
 
 .picture img {

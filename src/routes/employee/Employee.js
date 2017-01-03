@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
-import EmployeePresentation from '../../components/Employee/EmployeePresentation';
+import Presentation from '../../components/Employee/Presentation';
 import Description from '../../components/Employee/Description';
 import ContactInfo from '../../components/Employee/ContactInfo';
 import PersonalDevelopment from '../../components/Employee/PersonalDevelopment';
@@ -58,7 +58,7 @@ class Employee extends Component {
             <div className={s.profileHeader}></div>
             <div className={s.profileContainer}>
               <div className={s.profilePresentation}>
-                <EmployeePresentation employee={this.state.employee}/>
+                <Presentation employee={this.state.employee}/>
               </div>
               <div className={s.profileSection}>
                 <Description employee={this.state.employee} />

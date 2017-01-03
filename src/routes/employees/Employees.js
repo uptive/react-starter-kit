@@ -3,7 +3,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
 import s from './Employees.css';
 import Link from '../../components/Link';
-import EmployeePresentation from '../../components/Employee/EmployeePresentation';
+import Presentation from '../../components/Employee/Presentation';
 import { getEmployees } from '../../actions/employees';
 
 class Employees extends Component {
@@ -45,7 +45,7 @@ class Employees extends Component {
             {this.state.employees.map((item, index) => (
               <Link className={s.link} to={formatRoute(item.username)} key={index}>
                 <div className={s.listItem}>
-                  <EmployeePresentation employee={item}/>
+                  <Presentation employee={item}/>
                 </div>
               </Link>
             ))}

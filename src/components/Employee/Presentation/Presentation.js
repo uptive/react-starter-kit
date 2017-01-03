@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './EmployeePresentation.css';
+import s from './Presentation.css';
 
-function UserPresentation({ employee }) {
+function Presentation({ employee }) {
   if(!employee){ return (<div></div>); }
 
   return (
@@ -17,9 +17,4 @@ function UserPresentation({ employee }) {
   );
 }
 
-/*
-Layout.propTypes = {
-  user: PropTypes.object.isRequired,
-};
-*/
-export default withStyles(s)(UserPresentation);
+export default withStyles(s)(Presentation);
