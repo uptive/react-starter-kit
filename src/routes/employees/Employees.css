@@ -1,5 +1,10 @@
 @import '../../components/variables.css';
 
+@font-face{
+  font-family: 'josefin-sans';
+  src: url('/josefin-sans/JosefinSans-SemiBold.ttf') format('truetype');
+}
+
 .root {
   padding-left: 0px;
   padding-right: 0px;
@@ -18,17 +23,21 @@
 .listContainer{
   margin-left:auto;
   margin-right:auto;
-  max-width:800px;
+  max-width:var(--max-content-width);
   padding-left: 50px;
   padding-right: 50px;
+  margin-top: 20px;
 }
 
 .listItem{
-  width:300px;
-  display:inline-block;
-  padding:10px;
-  margin:10px;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
+  display:inline;
+  margin:0px;
+  padding: 0px;
+}
+
+.heading{
+  font-family: 'josefin-sans';
+  font-size: 50px;
+  text-align: center;
+  margin-top: 50px;
 }

@@ -1,0 +1,54 @@
+
+.container{
+  background: #EEEEEE;
+  max-width: 800px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+
+.container:hover {
+  background: #CCCCCC;
+}
+
+.profileHeader {
+  background: #555555;
+  height:150px;
+}
+
+.profileContainer {
+  background: #FFFFFF;
+}
+
+.userName {
+  font-family: 'josefin-sans';
+  font-size: 24px;
+  margin: 13px 0px 0px 20px;
+  padding: 0px;
+  vertical-align: top;
+  display: inline-block;
+}
+
+.picture {
+  width:54px;
+  height:54px;
+  border-radius: 27px;
+  -webkit-border-radius: 27px;
+  -moz-border-radius: 27px;
+  border: 1px solid #CCCCCC;
+  padding: 1px;
+  overflow: hidden;
+  display: inline-block;
+
+}
+
+.picture img {
+  margin-left:auto;
+  margin-right:auto;
+  width:50px;
+  height:50px;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  display: inline-flex;
+}

@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './UserEdit.css';
+import s from './Edit.css';
 import { Button, ButtonGroup, Glyphicon, FormGroup, FormControl, ControlLabel, Collapse, InputGroup, Modal } from 'react-bootstrap';
 import { saveEmployee, getEmployee } from '../../../actions/employee';
 
 
-class UserEdit extends React.Component {
+class Edit extends React.Component {
   static propTypes = {
     employee: PropTypes.object,
     isEditing: PropTypes.bool,
@@ -110,4 +110,4 @@ function showAllProperties(object){
   return properties;
 }
 
-export default withStyles(s)(UserEdit);
+export default withStyles(s)(Edit);

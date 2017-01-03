@@ -3,7 +3,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
 import s from './Employees.css';
 import Link from '../../components/Link';
-import Presentation from '../../components/Employee/Presentation';
+import ListItem from '../../components/Employee/ListItem';
 import { getEmployees } from '../../actions/employees';
 
 class Employees extends Component {
@@ -41,15 +41,16 @@ class Employees extends Component {
     return (
       <Layout>
         <div className={s.root}>
-          <div className={s.listContainer}>
+          <h1 className={s.heading}>All of us listed</h1>
+          <ul className={s.listContainer}>
             {this.state.employees.map((item, index) => (
-              <Link className={s.link} to={formatRoute(item.username)} key={index}>
-                <div className={s.listItem}>
-                  <Presentation employee={item}/>
-                </div>
-              </Link>
+              <li key={index} className={s.listItem}>
+                <Link className={s.link} to={formatRoute(item.username)} >
+                  <ListItem employee={item}/>
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </Layout>
     );

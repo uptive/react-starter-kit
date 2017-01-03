@@ -5,7 +5,7 @@ import Presentation from '../../components/Employee/Presentation';
 import Description from '../../components/Employee/Description';
 import ContactInfo from '../../components/Employee/ContactInfo';
 import PersonalDevelopment from '../../components/Employee/PersonalDevelopment';
-import UserEdit from '../../components/Employee/UserEdit';
+import Edit from '../../components/Employee/Edit';
 import ActionButton from '../../components/Action/ActionButton';
 import ActionMenu from '../../components/Action/ActionMenu';
 import s from './Employee.css';
@@ -66,7 +66,7 @@ class Employee extends Component {
                 <ContactInfo employee={this.state.employee} />
               </div>
               <ActionMenu> { this.renderActionButtonsContianer() } </ActionMenu>
-              <UserEdit employee={this.state.employee} isEditing={this.state.isEditing} canEdit={this.state.canEdit} shouldSave={this.state.shouldSave}/>
+              <Edit employee={this.state.employee} isEditing={this.state.isEditing} canEdit={this.state.canEdit} shouldSave={this.state.shouldSave}/>
             </div>
           </div>
         </div>
