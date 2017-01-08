@@ -27,7 +27,7 @@ class News extends Component {
   }
 
   componentDidMount(){
-    this.context.store.dispatch(getNews({token: this.context.store.getState().runtime.jwtToken}));
+    this.context.store.dispatch(getNews({services: this.context.store.getState().services}));
   }
 
   componentWillUnmount(){

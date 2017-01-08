@@ -23,7 +23,7 @@ class Recruit extends Component {
   }
 
   componentDidMount(){
-    this.context.store.dispatch(getRecruit({id: this.props.id, token: this.context.store.getState().runtime.jwtToken}));
+    this.context.store.dispatch(getRecruit({id: this.props.id, services: this.context.store.getState().services}));
   }
 
 

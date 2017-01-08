@@ -4,6 +4,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Navigation.css';
 import Link from '../Link';
 import MenuPresentation from '../Employee/MenuPresentation';
+import { logout } from '../../actions/logout';
 import { Popover, OverlayTrigger } from 'react-bootstrap';
 
 function Navigation({ className }, context ) {
@@ -23,7 +24,7 @@ function getContentBasedOnLoggedInUser(user){
       <span className={s.spacer}> | </span>
       <Link className={s.link} to="/employees">Employees</Link>
       <span className={s.spacer}> | </span>
-      <Link className={s.link} to="/logout">Logout</Link>
+      <span className={s.link} onClick={ logout() }>Logout</span>
     </div> );
 }
 

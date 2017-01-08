@@ -24,10 +24,11 @@ export const cancelEditEmployee = (employee) => ({
 });
 
 export const getEmployee = input => dispatch => {
+  var service = input.services.employees;
   const options = {
-    "headers":{"Authorization":"JWT " + input.token}
+    "headers":{"Authorization":"JWT " + service.token}
   };
-  return fetch('https://uptiverse-employee.herokuapp.com/employees/' + input.id, options)
+  return fetch(service.url + "/" + input.id, options)
   .then(response => response.json())
   .then(function(json){
     dispatch(setEmployee(json))
@@ -36,6 +37,7 @@ export const getEmployee = input => dispatch => {
 };
 
 export const saveEmployee = input => dispatch => {
+  var service = input.services.employees;
   var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
 
   xmlhttp.onreadystatechange = function() {
@@ -44,8 +46,8 @@ export const saveEmployee = input => dispatch => {
       }
   };
 
-  xmlhttp.open("POST", "https://uptiverse-employee.herokuapp.com/employees/save");
+  xmlhttp.open("POST", service.url + "/save");
   xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xmlhttp.setRequestHeader("Authorization", "JWT " + input.token);
+  xmlhttp.setRequestHeader("Authorization", "JWT " + service.token);
   xmlhttp.send(JSON.stringify(input.employee));
 };

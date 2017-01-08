@@ -64,11 +64,11 @@ class Edit extends React.Component {
   }
 
   save(){
-    this.context.store.dispatch(saveEmployee({employee:this.state.employee, token:this.context.store.getState().runtime.jwtToken}));
+    this.context.store.dispatch(saveEmployee({employee:this.state.employee, services: this.context.store.getState().services}));
   }
 
   close() {
-    this.context.store.dispatch(getEmployee({id: this.state.employee.username, token: this.context.store.getState().runtime.jwtToken}));
+    this.context.store.dispatch(getEmployee({id: this.state.employee.username, services: this.context.store.getState().services}));
   }
 
   onChange(event){

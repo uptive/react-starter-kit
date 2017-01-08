@@ -22,7 +22,7 @@ class Employees extends Component {
   }
 
   componentDidMount(){
-    this.context.store.dispatch(getEmployees({ token: this.context.store.getState().runtime.jwtToken}));
+    this.context.store.dispatch(getEmployees({ services: this.context.store.getState().services }));
   }
 
   componentWillUnmount(){

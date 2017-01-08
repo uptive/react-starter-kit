@@ -1,9 +1,5 @@
-/* eslint-disable import/prefer-default-export */
-
 import { FIND_RECRUIT, SET_RECRUITS_SEARCH_RESULT, SET_RECRUIT } from '../constants';
 import fetch from '../core/fetch';
-
-const baseUrl = "https://uptiverse-recruit.herokuapp.com";
 
 export const setRecruit = (data) => ({
   type: SET_RECRUIT,
@@ -16,10 +12,11 @@ export const setMatchingReqruits = (result) => ({
 });
 
 export const getRecruit = input => dispatch => {
+  var service = input.services.recruits;
   const options = {
-    "headers":{"Authorization":"JWT " + input.token}
+    "headers":{"Authorization":"JWT " + service.token}
   };
-  return fetch(baseUrl +'/recruits/' + input.id, options)
+  return fetch(service.url + '/' + input.id, options)
   .then(response => response.json())
   .then(function(json){
     dispatch(setRecruit(json))
@@ -27,7 +24,7 @@ export const getRecruit = input => dispatch => {
 }
 
 export const findRecruits = input => dispatch => {
-
+  var service = input.services.recruits;
   var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
 
   xmlhttp.onreadystatechange = function() {
@@ -36,9 +33,9 @@ export const findRecruits = input => dispatch => {
       }
   };
 
-  xmlhttp.open("POST", baseUrl+"/recruits/find");
+  xmlhttp.open("POST", service.url + "/find");
   xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-  xmlhttp.setRequestHeader("Authorization", "JWT " + input.token);
+  xmlhttp.setRequestHeader("Authorization", "JWT " + service.token);
   xmlhttp.send(JSON.stringify({link:input.link}));
 }

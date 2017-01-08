@@ -30,6 +30,7 @@ import routes from './routes';
 import assets from './assets'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
+import { initiateServicesWithToken } from './actions/services';
 import { port, auth } from './config';
 
 const app = express();
@@ -69,6 +70,7 @@ app.use(expressJwt({
     '/login/google',
     '/login/google/return',
     '/login/jwt',
+    '/logout',
   ]
 }));
 
@@ -77,6 +79,7 @@ app.use(passport.initialize());
 app.get('/login/google',
   passport.authenticate('google', { scope: ['email profile'], session: false })
 );
+
 app.get('/login/google/return',
   passport.authenticate('google', { failureRedirect: '/', session: false }),
   (req, res) => {
@@ -84,6 +87,12 @@ app.get('/login/google/return',
     const token = jwt.sign(req.user, auth.jwt.secret, { expiresIn });
     res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
     res.redirect('/news');
+  }
+);
+
+app.get('/logout',
+  function(req, res, next){
+    res.clearCookie('id_token');
   }
 );
 
@@ -113,11 +122,9 @@ app.get('*', async (req, res, next) => {
       value: Date.now(),
     }));
 
-    store.dispatch(setRuntimeVariable({
-      name: 'jwtToken',
-      value: req.cookies.id_token,
+    store.dispatch(initiateServicesWithToken({
+      token: req.cookies.id_token
     }));
-
 
     const css = new Set();
 

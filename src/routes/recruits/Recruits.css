@@ -1,5 +1,10 @@
 @import '../../components/variables.css';
 
+@font-face{
+  font-family: 'josefin-sans';
+  src: url('/josefin-sans/JosefinSans-SemiBold.ttf') format('truetype');
+}
+
 .root {
   padding-left: 0px;
   padding-right: 0px;

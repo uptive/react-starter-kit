@@ -14,7 +14,6 @@ class CreateNews extends Component {
     super(props, context);
 
     this.state =  {
-      jwtToken: context.store.getState().runtime.jwtToken,
       create: false,
       createdNews: {}
     };
@@ -58,7 +57,7 @@ class CreateNews extends Component {
     createdNews.published = new Date();
     createdNews.publisherId = this.context.store.getState().user.username;
     createdNews.publisher = this.context.store.getState().user.name.firstname + " " + this.context.store.getState().user.name.lastname;
-    this.context.store.dispatch(saveNews({token: this.context.store.getState().runtime.jwtToken, news: createdNews}));
+    this.context.store.dispatch(saveNews({services: this.context.store.getState().services, news: createdNews}));
   }
 
   render(){

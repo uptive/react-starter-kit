@@ -22,10 +22,11 @@ export const cancelCreateNews = () => ({
 });
 
 export const getNews = input => dispatch => {
+  var service = input.services.news;
   const options = {
-    "headers":{"Authorization":"JWT " + input.token}
+    "headers":{"Authorization":"JWT " + service.token}
   };
-  return fetch('https://uptiverse-news.herokuapp.com/news', options)
+  return fetch(service.url, options)
   .then(response => response.json())
   .then(function(json){
     dispatch(setNews(json))
@@ -33,6 +34,7 @@ export const getNews = input => dispatch => {
 }
 
 export const saveNews = input => dispatch => {
+  var service = input.services.news;
   var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
 
   xmlhttp.onreadystatechange = function() {
@@ -40,8 +42,8 @@ export const saveNews = input => dispatch => {
         dispatch(getNews(input));
       }
   };
-  xmlhttp.open("POST", "https://uptiverse-news.herokuapp.com/news/create");
+  xmlhttp.open("POST", service.url + "/create");
   xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xmlhttp.setRequestHeader("Authorization", "JWT " + input.token);
+  xmlhttp.setRequestHeader("Authorization", "JWT " + service.token);
   xmlhttp.send(JSON.stringify({news:input.news}));
 }

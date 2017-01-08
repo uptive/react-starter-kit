@@ -34,7 +34,7 @@ class Recruits extends Component {
   }
 
   searchButtonClicked(){
-    this.context.store.dispatch(findRecruits({link: this.state.link, token: this.context.store.getState().runtime.jwtToken}));
+    this.context.store.dispatch(findRecruits({link: this.state.link, services: this.context.store.getState().services}));
   }
 
   linkChanged(event){
@@ -44,10 +44,8 @@ class Recruits extends Component {
   handleSearchResultUpdated(newResult){
     var recruitsFound = [];
 
-
     if(newResult.result === "FOUND_EXACT_MATCH"){
       recruitsFound.push(newResult.recruit)
-      console.log(newResult.recruit)
     }
 
     this.setState({

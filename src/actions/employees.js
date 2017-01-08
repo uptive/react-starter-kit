@@ -9,10 +9,11 @@ export const setEmployees = (employees) => ({
 });
 
 export const getEmployees = input => dispatch => {
+  var service = input.services.employees;
   const options = {
-    "headers":{"Authorization":"JWT " + input.token}
+    "headers":{"Authorization":"JWT " + service.token}
   };
-  return fetch('https://uptiverse-employee.herokuapp.com/employees', options)
+  return fetch(service.url, options)
   .then(response => response.json())
   .then(function(json){
     dispatch(setEmployees(json))

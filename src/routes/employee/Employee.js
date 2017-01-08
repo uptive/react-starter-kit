@@ -28,7 +28,7 @@ class Employee extends Component {
   }
 
   componentDidMount(){
-    this.context.store.dispatch(getEmployee({id: this.props.id, user: this.context.store.getState().user, token: this.context.store.getState().runtime.jwtToken}));
+    this.context.store.dispatch(getEmployee({id: this.props.id, user: this.context.store.getState().user, services: this.context.store.getState().services}));
   }
 
   componentWillUnmount(){
