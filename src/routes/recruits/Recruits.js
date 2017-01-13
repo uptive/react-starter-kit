@@ -17,9 +17,10 @@ class Recruits extends Component {
     super(props, context);
 
     this.state =  {
-      link: "",
-      recruits:[]
+      searchQuery: "",
+      recruits: []
     };
+
     this.changeHandler = this.context.store.subscribe(() => this.handleChange(this));
   }
 
@@ -34,23 +35,17 @@ class Recruits extends Component {
   }
 
   searchButtonClicked(){
-    this.context.store.dispatch(findRecruits({link: this.state.link, services: this.context.store.getState().services}));
+    this.context.store.dispatch(findRecruits({link: this.state.searchQuery, services: this.context.store.getState().services}));
   }
 
   linkChanged(event){
-    this.setState({link: event.target.value});
+    this.setState({searchQuery: event.target.value});
   }
 
   handleSearchResultUpdated(newResult){
-    var recruitsFound = [];
-
-    if(newResult.result === "FOUND_EXACT_MATCH"){
-      recruitsFound.push(newResult.recruit)
-    }
-
+    var recruitsFound = newResult.recruits;
     this.setState({
-       recruits: recruitsFound,
-
+       recruits: recruitsFound
      });
   }
 
@@ -61,7 +56,7 @@ class Recruits extends Component {
           <div className={s.container}>
             <h1 className={s.heading}>Find recruits</h1>
             <InputGroup>
-              <FormControl type="text" value={this.state.link} placeholder="Search for a recruit" onChange={(e)=>{ this.linkChanged(e)}}/>
+              <FormControl type="text" value={this.state.searchQuery} placeholder="Search for a recruit" onChange={(e)=>{ this.linkChanged(e)}}/>
               <InputGroup.Button>
                 <Button onClick={this.searchButtonClicked.bind(this)}><Glyphicon glyph="search"/></Button>
               </InputGroup.Button>

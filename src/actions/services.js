@@ -1,24 +1,20 @@
-/* eslint-disable import/prefer-default-export */
-
 import { INITIATE_SERVICES_WITH_TOKEN } from '../constants';
+import { serviceList } from '../constants/services';
 
-var serviceList = [
-  {
-    name: "employees",
-    url: "https://uptiverse-employee.herokuapp.com/employees",
-    token: null,
-  },
-  {
-    name: "recruits",
-    url: "https://uptiverse-recruit.herokuapp.com/recruits",
-    token: null,
-  },
-  {
-    name: "news",
-    url: "https://uptiverse-news.herokuapp.com/news",
-    token: null,
-  },
-];
+export function getServiceList() {
+  var services = {};
+
+  for(var i= 0; i < serviceList.length; i++){
+    var service = serviceList[i];
+    service.token = token;
+    services[service.id] = service;
+  }
+
+  return {
+    type: GET_SERVICES,
+    services: services,
+  };
+}
 
 export function initiateServicesWithToken({ token }) {
   var services = {};
@@ -26,7 +22,7 @@ export function initiateServicesWithToken({ token }) {
   for(var i= 0; i < serviceList.length; i++){
     var service = serviceList[i];
     service.token = token;
-    services[service.name] = service;
+    services[service.id] = service;
   }
 
   return {
