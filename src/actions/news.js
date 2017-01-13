@@ -1,7 +1,6 @@
-/* eslint-disable import/prefer-default-export */
-
 import { SET_NEWS, ADD_NEWS, CREATE_NEWS, CANCEL_CREATE_NEWS } from '../constants';
 import fetch from '../core/fetch';
+import request from 'superagent';
 
 export const setNews = (data) => ({
   type: SET_NEWS,
@@ -23,27 +22,24 @@ export const cancelCreateNews = () => ({
 
 export const getNews = input => dispatch => {
   var service = input.services.news;
-  const options = {
-    "headers":{"Authorization":"JWT " + service.token}
-  };
-  return fetch(service.url, options)
-  .then(response => response.json())
-  .then(function(json){
-    dispatch(setNews(json))
+  request
+  .get(service.url)
+  .set('Authorization', "JWT " + service.token)
+  .end(function(err, res){
+    var data = JSON.parse(res.text);
+    dispatch(setNews(data))
   });
 }
 
 export const saveNews = input => dispatch => {
   var service = input.services.news;
-  var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-
-  xmlhttp.onreadystatechange = function() {
-      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        dispatch(getNews(input));
-      }
-  };
-  xmlhttp.open("POST", service.url + "/create");
-  xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xmlhttp.setRequestHeader("Authorization", "JWT " + service.token);
-  xmlhttp.send(JSON.stringify({news:input.news}));
+  request
+  .post(service.url + "/create")
+  .send({news:input.news})
+  .set('Authorization', "JWT " + service.token)
+  .set('Content-Type', "application/json;charset=UTF-8")
+  .end(function(err, res){
+    var data = JSON.parse(res.text);
+    dispatch(getNews(input));
+  });
 }

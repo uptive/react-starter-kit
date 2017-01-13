@@ -17,15 +17,4 @@ function ListItem({ employee }) {
   );
 }
 
-/*
-<div className={s.pictureContainer}>
-  <div className={s.picture}>
-    <img src={employee.picture} />
-  </div>
-  <p className={s.userName}>
-    {employee.firstname} {employee.lastname}
-  </p>
-</div>
-*/
-
 export default withStyles(s)(ListItem);

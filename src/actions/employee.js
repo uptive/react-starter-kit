@@ -1,7 +1,6 @@
-/* eslint-disable import/prefer-default-export */
-
 import { SET_EMPLOYEE, EDIT_EMPLOYEE, SET_CAN_EDIT_EMPLOYEE, CANCEL_EDIT_EMPLOYEE } from '../constants';
 import fetch from '../core/fetch';
+import request from 'superagent';
 
 export const setEmployee = (employee) => ({
   type: SET_EMPLOYEE,
@@ -25,29 +24,25 @@ export const cancelEditEmployee = (employee) => ({
 
 export const getEmployee = input => dispatch => {
   var service = input.services.employees;
-  const options = {
-    "headers":{"Authorization":"JWT " + service.token}
-  };
-  return fetch(service.url + "/" + input.id, options)
-  .then(response => response.json())
-  .then(function(json){
-    dispatch(setEmployee(json))
-    dispatch(setCanEditEmployee({employee:json, user:input.user}))
+  request
+  .get(service.url + "/" + input.id)
+  .set('Authorization', "JWT " + service.token)
+  .end(function(err, res){
+    var data = JSON.parse(res.text);
+    dispatch(setEmployee(data))
+    dispatch(setCanEditEmployee({employee:data, user:input.user}))
   });
 };
 
 export const saveEmployee = input => dispatch => {
   var service = input.services.employees;
-  var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-
-  xmlhttp.onreadystatechange = function() {
-      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        dispatch(setEmployee(JSON.parse(xmlhttp.response)));
-      }
-  };
-
-  xmlhttp.open("POST", service.url + "/save");
-  xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xmlhttp.setRequestHeader("Authorization", "JWT " + service.token);
-  xmlhttp.send(JSON.stringify(input.employee));
+  request
+  .post(service.url + "/save")
+  .send(input.employee)
+  .set('Authorization', "JWT " + service.token)
+  .set('Content-Type', "application/json;charset=UTF-8")
+  .end(function(err, res){
+    var data = JSON.parse(res.text);
+    dispatch(setEmployee(data));
+  });
 };
