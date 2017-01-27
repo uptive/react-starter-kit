@@ -62,7 +62,7 @@ app.use("/",expressJwt({
 app.use(expressJwt({
   secret: auth.jwt.secret,
   credentialsRequired: true,
-  getToken: req => req.cookies.id_token,
+  getToken: req => req.cookies.id_token || null,
 })
 .unless({
   path: [
@@ -93,6 +93,8 @@ app.get('/login/google/return',
 app.get('/logout',
   function(req, res, next){
     res.clearCookie('id_token');
+    res.redirect('/');
+    return;
   }
 );
 
@@ -164,7 +166,7 @@ app.get('*', async (req, res, next) => {
     res.status(route.status || 200);
     res.send(`<!doctype html>${html}`);
   } catch (err) {
-    next(err);
+    next(err, req, res);
   }
 });
 
@@ -176,6 +178,12 @@ pe.skipNodeFiles();
 pe.skipPackage('express');
 
 app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+
+  if(err.code == 'credentials_required'){
+    res.redirect('/');
+    return;
+  }
+
   console.log(pe.render(err)); // eslint-disable-line no-console
   const html = ReactDOM.renderToStaticMarkup(
     <Html
