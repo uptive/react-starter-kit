@@ -1,14 +1,3 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
-/* eslint-disable global-require */
-
 // The top-level (parent) route
 export default {
 
@@ -17,15 +6,15 @@ export default {
   // Keep in mind, routes are evaluated in order
   children: [
     require('./employees').default,
-//    require('./me').default,
     require('./employee').default,
 
     require('./recruits').default,
     require('./recruit').default,
 
+    require('./system').default,
+
     require('./news').default,
     require('./home').default,
-
     require('./notFound').default,
   ],
 
@@ -34,7 +23,7 @@ export default {
     const route = await next();
 
     // Provide default values for title, description etc.
-    route.title = `${route.title || 'Untitled Page'} - www.reactstarterkit.com`;
+    route.title = `${route.title || 'Untitled Page'} - Uptiverse`;
     route.description = route.description || '';
 
     return route;

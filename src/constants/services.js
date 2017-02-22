@@ -17,4 +17,10 @@ export const serviceList = [
     url: "https://uptiverse-news.herokuapp.com/news",
     token: null,
   },
+  {
+    name: "Comments",
+    id: "comments",
+    url: "https://uptiverse-comments.herokuapp.com/",
+    token: null,
+  },
 ];

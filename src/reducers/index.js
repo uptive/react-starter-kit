@@ -6,6 +6,7 @@ import employee from './employee';
 import employees from './employees';
 import recruits from './recruits';
 import services from './services';
+import comments from './comments';
 
 export default combineReducers({
   user,
@@ -15,4 +16,5 @@ export default combineReducers({
   employees,
   recruits,
   services,
+  comments,
 });

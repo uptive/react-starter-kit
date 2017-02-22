@@ -15,6 +15,8 @@ export const SET_RECRUIT = 'SET_RECRUIT';
 export const FIND_RECRUIT = 'FIND_RECRUIT';
 export const SET_RECRUITS_SEARCH_RESULT = 'SET_RECRUITS_SEARCH_RESULT';
 
+export const SET_COMMENTS = 'SET_COMMENTS';
+
 export const SET_NEWS = 'SET_NEWS';
 export const ADD_NEWS = "ADD_NEWS";
 export const CREATE_NEWS = 'CREATE_NEWS';
