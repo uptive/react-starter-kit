@@ -40,7 +40,7 @@ class List extends React.Component {
   }
 
   render() {
-    if(!this.state.comments ){ return null; }
+    if(!this.state.comments){ return null; }
     return (
       <div className={s.commentBox}>
         <h5>Comments</h5>
