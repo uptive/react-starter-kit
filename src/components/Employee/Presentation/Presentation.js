@@ -12,8 +12,7 @@ function Presentation({ employee }) {
 }
 
 function renderImage(employee){
-  var image = "";
-  if(employee){ image = (<img src={employee.picture} />); }
+  var image = (employee) ? (<img src={employee.picture} />) : ""
 
   return (
     <div className={s.picture}>
@@ -23,8 +22,7 @@ function renderImage(employee){
 }
 
 function renderName(employee){
-  var name = "";
-  if(employee){ name = employee.firstname + " " + employee.lastname; }
+  var name = (employee) ? (employee.firstname + " " + employee.lastname) : "";
 
   return (
     <p className={s.userName}>
