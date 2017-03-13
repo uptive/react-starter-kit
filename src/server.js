@@ -53,11 +53,6 @@ app.use(bodyParser.json());
 //
 // Authentication
 // -----------------------------------------------------------------------------
-app.use("/",expressJwt({
-  secret: auth.jwt.secret,
-  credentialsRequired: false,
-  getToken: req => req.cookies.id_token,
-}));
 
 app.use(expressJwt({
   secret: auth.jwt.secret,
@@ -72,6 +67,11 @@ app.use(expressJwt({
     '/login/jwt',
     '/logout',
   ]
+}))
+.use("/",expressJwt({
+  secret: auth.jwt.secret,
+  credentialsRequired: false,
+  getToken: req => req.cookies.id_token || null,
 }));
 
 app.use(passport.initialize());

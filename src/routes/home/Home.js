@@ -4,7 +4,6 @@ import Layout from '../../components/Layout';
 import s from './Home.css';
 import { Button } from 'react-bootstrap';
 
-/**/
 class Home extends Component {
 
   static contextTypes = {
