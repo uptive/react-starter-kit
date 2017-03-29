@@ -53,7 +53,6 @@ app.use(bodyParser.json());
 //
 // Authentication
 // -----------------------------------------------------------------------------
-
 app.use(expressJwt({
   secret: auth.jwt.secret,
   credentialsRequired: true,
@@ -115,6 +114,9 @@ app.get('*', async (req, res, next) => {
   try {
     const store = configureStore({
       user: req.user || null,
+      services: initiateServicesWithToken({
+            token: req.cookies.id_token
+          }).services
     }, {
       cookie: req.headers.cookie,
     });
@@ -122,10 +124,6 @@ app.get('*', async (req, res, next) => {
     store.dispatch(setRuntimeVariable({
       name: 'initialNow',
       value: Date.now(),
-    }));
-
-    store.dispatch(initiateServicesWithToken({
-      token: req.cookies.id_token
     }));
 
     const css = new Set();
@@ -202,9 +200,8 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 // Launch the server
 // -----------------------------------------------------------------------------
 /* eslint-disable no-console */
-models.sync().catch(err => console.error(err.stack)).then(() => {
   app.listen(port, () => {
     console.log(`The server is running at http://localhost:${port}/`);
   });
-});
+
 /* eslint-enable no-console */
