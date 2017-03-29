@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './List.css';
 import Date from './../../Date';
+import Link from './../../Link';
 import { getComments } from '../../../actions/comments';
 
 
@@ -48,7 +49,11 @@ class List extends React.Component {
           {this.state.comments.map((item, index) => (
             <li key={index}>
               <div>
-                <div><Date>{item.date}</Date> - {item.user}</div>
+                <div><Date>{item.date}</Date> - 
+                  <Link className={s.link} to={formatRoute(item.user.username)} >
+                    {item.user.name.firstname} {item.user.name.lastname}
+                  </Link>
+                </div>
                 <div>{item.text}</div>
               </div>
             </li>
@@ -57,6 +62,10 @@ class List extends React.Component {
       </div>
     );
   }
+}
+
+function formatRoute(id){
+  return "/employee/" + id;
 }
 
 export default withStyles(s)(List);

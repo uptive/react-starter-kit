@@ -3,6 +3,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
 import Date from '../../components/Date';
 import CommentList from '../../components/Comments/List';
+import CommentCreate from '../../components/Comments/Create';
 import s from './Recruit.css';
 import { FormControl , InputGroup, Glyphicon, Button, Badge } from 'react-bootstrap';
 import { findRecruits, getRecruit } from '../../actions/recruit';
@@ -17,6 +18,7 @@ class Recruit extends Component {
     super(props, context);
 
     this.state =  {
+      loggedInUser: this.context.store.getState().user,
       recruit: {},
     };
     this.changeHandler = this.context.store.subscribe(() => this.handleChange(this));
@@ -46,6 +48,7 @@ class Recruit extends Component {
           <div className={s.container}>
             <h3>{ this.state.recruit.firstname } { this.state.recruit.lastname }</h3>
             <CommentList commentKey={"recruit-" + this.props.id}/>
+            <CommentCreate commentKey={"recruit-" + this.props.id} loggedInUser={this.state.loggedInUser}/>
           </div>
         </div>
       </Layout>

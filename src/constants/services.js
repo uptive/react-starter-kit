@@ -20,7 +20,7 @@ export const serviceList = [
   {
     name: "Comments",
     id: "comments",
-    url: "https://uptiverse-comments.herokuapp.com/",
+    url: "https://uptiverse-comments.herokuapp.com/comments",
     token: null,
   },
 ];
