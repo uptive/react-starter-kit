@@ -47,14 +47,17 @@ class Recruit extends Component {
         <div className={s.root}>
           <div className={s.container}>
             <h3>{ this.state.recruit.firstname } { this.state.recruit.lastname }</h3>
-            <CommentList commentKey={"recruit-" + this.props.id}/>
-            <CommentCreate commentKey={"recruit-" + this.props.id} loggedInUser={this.state.loggedInUser}/>
+            <CommentList commentKey={getCommentKey(this.props.id)}/>
+            <CommentCreate commentKey={getCommentKey(this.props.id)} loggedInUser={this.state.loggedInUser}/>
           </div>
         </div>
       </Layout>
     );
   }
+}
 
+function getCommentKey(id){
+  return "recruit-" + id;
 }
 
 export default withStyles(s)(Recruit);

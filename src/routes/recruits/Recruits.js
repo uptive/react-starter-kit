@@ -2,8 +2,9 @@ import React, { PropTypes, Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
 import Link from '../../components/Link';
+import ListItem from '../../components/Recruit/ListItem';
 import s from './Recruits.css';
-import { FormControl , InputGroup, Glyphicon, Button, Badge} from 'react-bootstrap';
+import { FormControl , InputGroup, Glyphicon, Button} from 'react-bootstrap';
 import { findRecruits } from '../../actions/recruit';
 import FontAwesome from 'react-fontawesome';
 
@@ -77,21 +78,7 @@ class Recruits extends Component {
         <ul className={s.searchResultList}>
           {recruits.map((item, index) => (
             <li key={index}>
-              <Link to={formatRoute(item._id)} className={s.link}>
-                <div>
-                  <div className={s.name}>
-                    { item.firstname + " " + item.lastname }
-                  </div>
-                  <div className={s.connections}>
-                    <FontAwesome className={linkedInIconStyle(item,s)} name='linkedin-square'/>
-                    <FontAwesome className={facebookIconStyle(item,s)} name='facebook-square'/>
-                    <FontAwesome className={githubIconStyle(item,s)} name='github-square'/>
-                    <FontAwesome className={phoneIconStyle(item,s)} name='phone-square'/>
-                    <FontAwesome className={mailIconStyle(item,s)} name='envelope'/>
-                  </div>
-                  {this.renderComments(item)}
-                </div>
-              </Link>
+              <ListItem recruit={item}/>
             </li>
           ))}
         </ul>
@@ -99,46 +86,6 @@ class Recruits extends Component {
 
     );
   }
-
-  renderComments(item){
-    var commentCount = 0;
-    if(item && item.comments){ commentCount = item.comments.length};
-
-    return (
-      <div className={s.comments}>
-        <Badge><FontAwesome className={s.connection} name='comments'/> { commentCount }</Badge>
-      </div>
-    );
-  }
-}
-
-function linkedInIconStyle(item, s){
-  if(item && item.connections && item.connections.linkedIn){ return s.activeConnection;}
-  return s.inactiveConnection;
-}
-
-function facebookIconStyle(item, s){
-  if(item && item.connections && item.connections.facebook){ return s.activeConnection;}
-  return s.inactiveConnection;
-}
-
-function githubIconStyle(item, s){
-  if(item && item.connections && item.connections.github){ return s.activeConnection;}
-  return s.inactiveConnection;
-}
-
-function phoneIconStyle(item, s){
-  if(item && item.connections && item.connections.phone){ return s.activeConnection;}
-  return s.inactiveConnection;
-}
-
-function mailIconStyle(item, s){
-  if(item && item.connections && item.connections.mail){ return s.activeConnection;}
-  return s.inactiveConnection;
-}
-
-function formatRoute(id){
-  return "/recruit/" + id;
 }
 
 export default withStyles(s)(Recruits);

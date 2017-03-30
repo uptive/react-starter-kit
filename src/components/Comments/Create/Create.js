@@ -49,7 +49,8 @@ class Create extends React.Component {
     if(!this.props.commentKey){ return null; }
     return (
       <div>
-      <FormControl value={this.state.comment} onChange={(e) => this.handleChange(e)}/>
+
+      <FormControl componentClass="textarea" placeholder="Write a comment" value={this.state.comment} onChange={(e) => this.handleChange(e)}/>
       <Button onClick={(e) => this.handleAddComment(e)} >Add comment</Button>
       </div>
     );

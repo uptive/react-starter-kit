@@ -1,0 +1,18 @@
+.commentBox{
+  padding: 0px;
+}
+
+.comments{
+  list-style-type: none;
+  padding: 0px;
+}
+
+.comments li{
+  padding: 10px;
+  margin-bottom:5px;
+  background-color: #eeeeee;
+}
+
+.link {
+  color:#000000;
+}
