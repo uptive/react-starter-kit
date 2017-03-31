@@ -20,14 +20,19 @@
 
 .container {
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 0;
   max-width: var(--max-content-width);
+  height: 50px;
 }
 
 .brand {
   color: color(var(--brand-color) lightness(+10%));
   text-decoration: none;
   font-size: 1.75em; /* ~28px */
+}
+
+.brand img{
+    margin-top: 5px;
 }
 
 .brandTxt {

@@ -13,7 +13,7 @@
 
 .link {
   display: inline-block;
-  padding: 3px 8px;
+  padding: 14px 18px;
   text-decoration: none;
   font-size: 1.125em; /* ~18px */
 }
@@ -32,14 +32,62 @@
   margin-right: 8px;
   margin-left: 8px;
   border-radius: 3px;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0);
   color: #fff;
 }
 
 .highlight:hover {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .spacer {
   color: rgba(255, 255, 255, 0.3);
+}
+
+.menuContainer{
+  background-color: rgba(240, 240, 240, 0.9);
+  width: 100%;
+  position: absolute;
+  top: 50px;
+  left: 0px;
+}
+
+.menuContent{
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.menuBlock{
+  background-color: #DDDDDD;
+  width:100px;
+  height: 100px;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+}
+
+.menuBlock:hover{
+  background-color: #CCCCCC;
+}
+
+.menuBlockLink{
+  display: inline-block;
+}
+
+.menuBlockLink:hover{
+  text-decoration: none;
+}
+
+.menuIcon{
+  font-size: 35px;
+  color: rgba(0, 0, 0, 0.5);
+  display: block;
+  margin-top: 10px;
+}
+
+.menuText{
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+  display: block;
 }
