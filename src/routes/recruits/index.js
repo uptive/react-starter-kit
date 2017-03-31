@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import Recruits from './Recruits';
-import fetch from '../../core/fetch';
 
 export default {
 

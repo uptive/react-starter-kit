@@ -1,5 +1,4 @@
 import { FIND_RECRUIT, SET_RECRUITS_SEARCH_RESULT, SET_RECRUIT, CREATE_RECRUIT, CREATE_RECRUIT_CANCEL, CREATE_RECRUIT_DONE } from '../constants';
-import fetch from '../core/fetch';
 import request from 'superagent';
 
 export const setRecruit = (data) => ({

@@ -1,5 +1,4 @@
 import { SET_EMPLOYEE, EDIT_EMPLOYEE, SET_CAN_EDIT_EMPLOYEE, CANCEL_EDIT_EMPLOYEE } from '../constants';
-import fetch from '../core/fetch';
 import request from 'superagent';
 
 export const setEmployee = (employee) => ({

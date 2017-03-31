@@ -1,5 +1,4 @@
 import { SET_EMPLOYEES } from '../constants';
-import fetch from '../core/fetch';
 import request from 'superagent';
 
 export const setEmployees = (employees) => ({

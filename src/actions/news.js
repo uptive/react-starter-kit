@@ -1,5 +1,4 @@
 import { SET_NEWS, ADD_NEWS, CREATE_NEWS, CANCEL_CREATE_NEWS } from '../constants';
-import fetch from '../core/fetch';
 import request from 'superagent';
 
 export const setNews = (data) => ({

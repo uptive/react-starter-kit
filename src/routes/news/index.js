@@ -1,6 +1,5 @@
 import React from 'react';
 import News from './News';
-import fetch from '../../core/fetch';
 
 export default {
 

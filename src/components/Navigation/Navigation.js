@@ -3,7 +3,6 @@ import cx from 'classnames';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Navigation.css';
 import Link from '../Link';
-import MenuPresentation from '../Employee/MenuPresentation';
 import { logout } from '../../actions/logout';
 import { Popover, OverlayTrigger } from 'react-bootstrap';
 
