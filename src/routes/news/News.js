@@ -7,7 +7,7 @@ import s from './News.css';
 import { getNews, createNews } from '../../actions/news';
 import EditButton from '../../components/Action/ActionButton';
 import ActionMenu from '../../components/Action/ActionMenu';
-import CreateNews from '../../components/News/CreateNews';
+import CreateNews from '../../components/News/Create';
 import Loading from 'react-loader';
 
 class News extends Component {

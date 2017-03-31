@@ -1,6 +1,0 @@
-{
-  "name": "CreateNews",
-  "version": "0.0.0",
-  "private": false,
-  "main": "./CreateNews.js"
-}

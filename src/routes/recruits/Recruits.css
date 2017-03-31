@@ -34,8 +34,17 @@
 
 .searchResultList li{
   background-color: #eee;
+  margin-bottom: 5px;
 }
 
 .searchResultList li:hover{
   background-color: #ddd;
+}
+
+.createRecruitSection{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  text-align: center;
+  cursor: pointer;
 }

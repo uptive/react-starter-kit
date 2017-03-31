@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './CreateNews.css';
+import s from './Create.css';
 import { Button, FormControl, Modal } from 'react-bootstrap';
 import { cancelCreateNews, saveNews } from '../../../actions/news';
 
 
-class CreateNews extends Component {
+class Create extends Component {
   static contextTypes = {
       store: React.PropTypes.object
   };
@@ -83,4 +83,4 @@ class CreateNews extends Component {
   }
 }
 
-export default withStyles(s)(CreateNews);
+export default withStyles(s)(Create);
