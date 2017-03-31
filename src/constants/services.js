@@ -8,7 +8,7 @@ export const serviceList = [
   {
     name: "Recruits",
     id: "recruits",
-    url: "http://localhost:5000/recruits",//"https://uptiverse-recruit.herokuapp.com/recruits",
+    url: "https://uptiverse-recruit.herokuapp.com/recruits",
     token: null,
   },
   {
