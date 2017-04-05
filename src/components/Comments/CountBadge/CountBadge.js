@@ -19,6 +19,7 @@ class CountBadge extends React.Component {
 
     this.state = {
       comments: [],
+      loaded: false
     };
     this.changeHandler = this.context.store.subscribe(() => this.handleChange(this));
   }
@@ -36,12 +37,13 @@ class CountBadge extends React.Component {
   handleChange(){
     this.setState({
       comments: this.context.store.getState().comments[this.props.commentKey],
+      loaded: true,
     });
   }
 
   render() {
-    var commentCount = 0;
-    if(this.props.commentKey && this.state.comments){ commentCount = this.state.comments.length};
+    var commentCount = "";
+    if(this.state.loaded && this.props.commentKey && this.state.comments){ commentCount = this.state.comments.length};
     return (
         <Badge><FontAwesome className={s.connection} name='comments'/> { commentCount }</Badge>
     );
