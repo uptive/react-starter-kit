@@ -71,3 +71,16 @@
   margin-bottom:5px;
   background-color: #eeeeee;
 }
+
+.iconContainer {
+  width: 20px;
+  color: #444444;
+  text-align: center;
+  display: inline-block;
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+.connectionContainer{
+    display: inline-block;
+}

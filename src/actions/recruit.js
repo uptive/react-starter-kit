@@ -49,9 +49,8 @@ export const findRecruits = input => dispatch => {
 
 export const saveRecruit = input => dispatch => {
   var service = input.services.recruits;
-
   request
-  .post(service.url + "/create")
+  .post(service.url + "/save")
   .send({recruit:input.recruit})
   .set('Authorization', "JWT " + service.token)
   .set('Content-Type', "application/json;charset=UTF-8")

@@ -31,7 +31,7 @@ class ContactInfo extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h4 className={s.divider}> Contact inforamtion</h4>
+          <h4 className={s.divider}> Contact information</h4>
           {this.renderEmail()}
           {this.renderPhone()}
           {this.renderGithub()}
